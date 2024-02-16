@@ -1,25 +1,65 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		<link rel="stylesheet" href="/css/notice/notice.css">
-	</head>
-	<body>
-		<main class="view-size">
-			<section>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/notice/notice.css">
+</head>
+
+<body>
+	<main class="view-size">
+		<section>
 			<div class="flex title">
-				<div>공지사항</div>
-				<input type="text" placeholder="검색어를 입력해주세요"></input>
+				<div style="font-size: 2rem; font-weight: bold;">공지사항</div>
+				<a href="/add-notice">공지작성</a>
+				<div class="search-area">
+					<input class="search" type="text" placeholder="검색어를 입력해주세요"></input>
+					<button class="searchbtn"><img src="/img/notice/search.png"></button>
+				</div>
 			</div>
 		</section>
 		<section>
-			<div class="tabarea flex" style="justify-content: space-between;">
-				<a>전체</a>
-				<a class="tabcenter">공지</a>
+			<div class="tabarea flex col-center" style="justify-content: space-between;">
+				<a class="first">전체</a>
+				<a class="tabcenter">
+					<p>공지</p>
+				</a>
+				<span></span>
 				<a class="event">이벤트</a>
 			</div>
 		</section>
-		</main>
-	</body>
+		<section>
+			<div class="noticelist">
+				<ul>
+					<li>
+						<a class="flex">
+							<span class="noticespan">공지</span>
+							<div class="listtitle">공지입니다</div>
+							<div class="flex count">
+								<img src="/img/notice/eye.png">
+								<p>123</p>
+							</div>
+							<div>2024.02.16</div>
+						</a>
+					</li>
+				</ul>
+				<ul>
+					<li>
+						<a class="flex">
+							<span class="eventspan">이벤트</span>
+							<div class="listtitle">이벤트입니다.</div>
+							<div class="flex count">
+								<img src="/img/notice/eye.png">
+								<p>123</p>
+							</div>
+							<div>2024.02.16</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+	</main>
+</body>
+
 </html>
