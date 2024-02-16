@@ -8,6 +8,7 @@ build/
 ### STS ###
 application.properties
 application-secret.properties
+build.gradle
 .apt_generated
 .classpath
 .factorypath
