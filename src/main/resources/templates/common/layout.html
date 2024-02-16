@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:fragment="commonLayout(head, main)">
+	<head>
+		<script src="/webjars/jquery/jquery.min.js"></script>
+		<link rel="stylesheet" href="/css/common/reset.css">
+		<link rel="stylesheet" href="/css/common/header.css">
+		<link rel="stylesheet" href="/css/common/footer.css">
+		<script type="text/javascript" src="/js/common/header.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script src="/webjars/sockjs-client/1.5.1/sockjs.min.js"></script>
+		<script src="/webjars/stomp-websocket/stomp.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+		<th:block th:replace="${head}">페이지마다 적용될 css,js resource</th:block>
+	</head>
+	<body>
+		<th:block th:replace="~{common/header}">header섹션 적용</th:block>
+		<th:block th:replace="${main}">main섹션 적용</th:block>
+		<th:block th:replace="~{common/footer}">footer섹션 적용</th:block>
+	</body>
+</html>
