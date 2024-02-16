@@ -1,0 +1,21 @@
+@charset "UTF-8";
+.board-wrap .no, .board-wrap .view-count, .board-wrap .situation{
+	width:10%;
+}
+.board-wrap .content{
+	width:50%;
+}
+.board-wrap .date{
+	width:20%;
+}
+.board-wrap-content>:nth-child(2){
+	text-align: center;
+	margin:0;
+}
+.board-wrap-content>:nth-child(3){
+	text-align: left;
+	overflow: hidden;  		
+    text-overflow: ellipsis;  	
+    white-space: nowrap;
+    margin-left: 20px;
+}

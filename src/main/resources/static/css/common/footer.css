@@ -4,3 +4,17 @@ footer{
 	height:200px;
 	background-color: #eee;
 }
+footer section{
+	height:100%;
+}
+footer .head-logo{
+	width:200px;
+	height:50px;
+}
+.member{
+	line-height: 35px;
+}
+.member>:nth-child(1){
+	font-size: 1.2rem;
+	font-weight: bold;
+}
