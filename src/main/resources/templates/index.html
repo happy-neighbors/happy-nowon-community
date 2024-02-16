@@ -1,10 +1,78 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+		<link rel="stylesheet" href="/css/index.css">
 	</head>
 	<body>
-		<h1>형철 test</h1>
+		<main>
+			<section class="swiper mySwiper">
+				<h1>메인슬라이드</h1>
+			    <div class="swiper-wrapper">
+			      <div class="swiper-slide"><img src="/img/header/slide-img1.jpg"></div>
+			      <div class="swiper-slide"><img src="/img/header/slide-img2.jpg"></div>
+			      <div class="swiper-slide"><img src="/img/header/slide-img3.jpg"></div>
+			    </div>
+			    <div class="swiper-button-next"></div>
+			    <div class="swiper-button-prev"></div>
+			    <div class="swiper-pagination"></div>
+		  	</section>
+		  	<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+		  	<script>
+			    var swiper = new Swiper(".mySwiper", {
+			      slidesPerView: 1,
+			      spaceBetween: 30,
+			      loop: true,
+			      pagination: {
+			        el: ".swiper-pagination",
+			        clickable: true,
+			      },
+			      navigation: {
+			        nextEl: ".swiper-button-next",
+			        prevEl: ".swiper-button-prev",
+			      },
+			    });
+			</script>
+			<section class="view-size event">
+				<h1>행사일정</h1>
+				<p class="event-title">노원구 행사일정</p>
+				<div class="event-schedule">
+					<!--여기작업할때는 index.css에서 .event .event-schedule 
+					해당부분 border없애고작업-->
+				</div>
+			</section>
+			<section class="view-size board flex between">
+				<h1>게시글요약</h1>
+				<section class="town board-info">
+					<div class="flex between col-center">
+						<p class="title">동네모임</p>
+						<a href="#">더보기+</a>
+					</div>
+					<div class="board-area">
+						
+					</div>
+				</section>
+				<section class="exchange board-info">
+					<div class="flex between col-center">
+						<p class="title">아나바다</p>
+						<a href="#">더보기+</a>
+					</div>
+					<div class="board-area">
+						
+					</div>
+				</section>
+				<section class="notice board-info">
+					<div class="flex between col-center">
+						<p class="title">공지사항</p>
+						<a href="#">더보기+</a>
+					</div>
+					<div class="board-area">
+						<!--작업할때 최근작성된거 5개
+						index.css .board .board-info .board-area에 border 제외-->
+					</div>
+				</section>
+			</section>
+		</main>
 	</body>
 </html>
