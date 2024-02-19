@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/common/reset.css">
+	<link rel="stylesheet" href="/css/sign/signup.css">
+
+
+</head>
+
+<body>
+	<h1>회원가입페이지</h1>
+	<main>
+
+		<div class="container">
+			<span class="title">회원가입 페이지</span>
+			<form action="/signup" method="post">
+				<div class="wrapper">
+					<label for="id">아이디:</label>
+					<input type="text" id="id" name="id" required>
+				</div>
+
+				<div class="wrapper">
+					<label for="password">비밀번호:</label>
+					<input type="text" id="password" name="password" required>
+				</div>
+
+				<div class="wrapper">
+					<label for="name">이름:</label>
+					<input type="text" id="name" name="name" required>
+				</div>
+
+				<div class="wrapper">
+					<label for="name">생년월일:</label>
+					<input type="text" id="birth" name="birth" required>
+
+				</div>
+
+
+				<div class="wrapper">
+					<label for="phone">전화번호:</label>
+					<input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required> <small>예시:
+						010-1234-5678</small>
+				</div>
+
+				<div class="wrapper">
+					<input type="submit" value="회원가입">
+				</div>
+
+			</form>
+		</div>
+	</main>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+main {
+	margin:100px auto;
+	display: flex;
+	justify-content: center;
+	vertical-align: middle;
+}
+
+.container {
+	 padding: 50px;
+    background-color: rgba(27, 106, 55, 0.1); /* 알파 채널을 0.7로 설정하여 투명도를 70%로 조절 */
+
+}
+
+.title {
+	font-size: 30px;
+	font-weight: 700;
+	margin-bottom: 200px;
+	color: black;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 30px;
+}
+
+.wrapper>label {
+	margin-top: 10px;
+	margin-bottom: 5px;
+	font-weight: 700;
+}
+
+.wrapper>input {
+	width: 300px;
+	border-radius: 5%;
+	height: 30px;
+	border-color: green;
+}
