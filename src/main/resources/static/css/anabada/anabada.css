@@ -13,9 +13,7 @@
 	margin:0;
 }
 .board-wrap-content>:nth-child(3){
-	text-align: left;
 	overflow: hidden;  		
     text-overflow: ellipsis;  	
     white-space: nowrap;
-    margin-left: 20px;
 }
