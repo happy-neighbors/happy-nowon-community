@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
 <head>
-	<link rel="stylesheet" href="/css/free/free.css">
-	<link rel="stylesheet" href="/css/free/add-free.css">
+	<link rel="stylesheet" href="/css/common/board.css">
+	<link rel="stylesheet" href="/css/common/add-board.css">
+	<link rel="stylesheet" href="/css/town/add-town.css">
 	<script src="/js/summernote/summernote-lite.js"></script>
 	<script src="/js/summernote/summernote-ko-KR.js"></script>
 	<script src="/js/summernote/my-summernote.js"></script>
@@ -12,14 +13,53 @@
 	<main class="view-size">
 		<h1>동네모임등록</h1>
 		<p style="font-size: 2rem; font-weight: bold;">동네모임등록</p>
-		<section class="add-wrap">
-			<p>제목</p>
-			<input type="text" name="title" placeholder="제목을 입력해주세요">
-			<p>내용</p>
-			<div class="box_right">
-				<textarea id="summernote" name="content"></textarea>
-			</div>
-		</section>
+		<form class="add-wrap">
+			<table>
+				<tr>
+					<th>
+						<p>모임명</p>
+					</th>
+					<td>
+						<input type="text" name="title" placeholder="제목을 입력해주세요">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<p>대표자</p>
+					</th>
+					<td>
+						<input type="text" name="leader" placeholder="대표자를 입력해주세요">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<p>연락처</p>
+					</th>
+					<td>
+						<input type="text" name="phone" placeholder="연락처를 입력해주세요">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<p>활동구역</p>
+					</th>
+					<td>
+						<input type="text" name="area" placeholder="활동구역 입력해주세요">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<p>모임상세설명</p>
+					</th>
+					<td>
+						<textarea id="summernote" name="content"></textarea>
+					</td>
+				</tr>
+			</table>
+			<section class="add-area">
+				<button class="add-btn"><span>등록하기</span></button>
+			</section>
+		</form>
 		<script>
 		/**
 		*이미지 파일 업로드
@@ -46,9 +86,7 @@
 				});
 			}
 		</script>
-		<section class="add-area">
-			<a href="#"><button class="add-btn"><span>등록하기</span></button></a>
-		</section>
+		
 	</main>
 </body>
 </html>

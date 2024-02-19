@@ -5,6 +5,11 @@
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
 	<link rel="stylesheet" href="/css/notice/add-notice.css">
+	<script src="/js/notice/add-notice.js"></script>
+	<link rel="stylesheet" href="/js/summernote/summernote-lite.css">
+	<script src="/js/summernote/summernote-ko-KR.js"></script>
+	<script src="/js/summernote/summernote-lite.js"></script>
+	<script src="/js/summernote/my-summernote.js"></script>
 </head>
 
 <body>
@@ -12,31 +17,41 @@
 		<div class="writetitle">
 			<div style="font-weight: bold; font-size: 2rem;">공지작성</div>
 		</div>
-		<section>
-			<div class="noticeview">
-				<table>
-					<tr>
-						<th>제목</th>
-						<td>
-							<input type="text" placeholder="내용을 입력해주세요.">
-						</td>
-					</tr>
-					<tr>
-						<th>공지 타입</th>
-						<td>
-							<input type="radio" name="type" id="notice">
-							<label for="notice">공지</label>
-							<input type="radio" name="type" id="event">
-							<label for="event">이벤트</label>
-						</td>
-					</tr>
-					<tr>
-						<th>공지기간</th>
-					</tr>
-				</table>
-			</div>
+		<section class="noticeview">
+			<table>
+				<tr>
+					<th><label for="write1">제목</label></th>
+					<td>
+						<input type="text" placeholder="내용을 입력해주세요." id="write1">
+					</td>
+				</tr>
+				<tr>
+					<th style="height: 35px;"><label>공지 타입</label></th>
+					<td>
+						<input type="radio" name="type" id="notice">
+						<label for="notice">공지</label>
+						<input type="radio" name="type" id="event">
+						<label for="event">이벤트</label>
+					</td>
+				</tr>
+				<tr>
+					<th style="height: 35px;">공지 기간</th>
+					<td>
+						<input type="date" name="start_date">
+						&nbsp;~&nbsp;
+						<input type="date" name="end_date">
+					</td>
+				</tr>
+				<tr>
+					<th>공지 내용</th>
+					<td>
+						<textarea id="summernote" name="content"></textarea>
+					</td>
+				</tr>
+			</table>
 		</section>
 	</main>
 </body>
+
 
 </html>
