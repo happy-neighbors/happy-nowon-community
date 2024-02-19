@@ -1,0 +1,56 @@
+@charset "UTF-8";
+header{
+	padding:40px 20px;
+}
+header .head-logo{
+	width:200px;
+	height:50px;
+}
+header .head-cate{
+	width:50%;
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+header .head-cate a{
+	height:100%;
+}
+header .head-user{
+	width:13%;
+}
+header .head-user span{
+	width:1px;
+	height:18px;
+	display: block;
+	background-color: #222;
+	margin:0 10px;
+}
+header .cate-info{
+	position: relative;
+}
+header .cate-info p{
+	transition: 0.3s;
+}
+header .cate-info p::after{
+	position: absolute; 
+	content:""; 
+	display: block; 
+	border-bottom: 3px solid #1B6A37; 
+	transition: width 250ms ease-out; 
+	left: auto; 
+	right: 0;  
+	width: 0;
+	bottom:0;	
+}
+header .cate-info:hover p::after{
+	width: 100%; left: 0; right: auto;
+}
+header .cate-info:hover p{
+	color:#1B6A37
+}
+header .head-user p{
+	transition: 0.3s;
+}
+header .head-user p:hover{
+	font-weight: bold;
+}
+

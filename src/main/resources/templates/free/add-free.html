@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
+<head>
+	<link rel="stylesheet" href="/css/free/free.css">
+	<link rel="stylesheet" href="/css/free/add-free.css">
+	<script src="/js/summernote/summernote-lite.js"></script>
+	<script src="/js/summernote/summernote-ko-KR.js"></script>
+	<script src="/js/summernote/my-summernote.js"></script>
+	<link rel="stylesheet" href="/js/summernote/summernote-lite.css">
+</head>
+<body>
+	<main class="view-size">
+		<h1>자유게시판등록</h1>
+		<p style="font-size: 2rem; font-weight: bold;">자유게시판등록하기</p>
+		<section class="add-wrap">
+			<p>제목</p>
+			<input type="text" name="title" placeholder="제목을 입력해주세요">
+			<p>내용</p>
+			<div class="box_right">
+				<textarea id="summernote" name="content"></textarea>
+			</div>
+		</section>
+		<script>
+		/**
+		*이미지 파일 업로드
+		*/
+		function uploadSummernoteImageFile(file, editor) {
+				
+				var formData = new FormData();
+				formData.append("goodsImg", file);
+				
+				$.ajax({
+					data: formData,
+					type: "POST",
+					url: "/admin/temp-upload",
+					contentType: false,
+					processData: false,
+					success: function (result) {
+						//항상 업로드된 파일의 url이 있어야 한다.
+						$(editor).summernote('insertImage', result.url);
+						
+						var tempkey = $("<input type='hidden' name='tempKey'>").val(result.bucketKey);
+						var orgname = $("<input type='hidden' name='orgName'>").val(result.orgName);
+						$(editor).after(tempkey, orgname);    
+					}
+				});
+			}
+		</script>
+		<section class="add-area">
+			<a href="#"><button class="add-btn"><span>등록하기</span></button></a>
+		</section>
+	</main>
+</body>
+</html>

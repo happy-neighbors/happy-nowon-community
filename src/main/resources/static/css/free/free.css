@@ -1,0 +1,126 @@
+@charset "UTF-8";
+.board-box{
+	margin-top: 20px;
+}
+.board-wrap{
+	height:60px;
+}
+.board-wrap p{
+	text-align: center;
+}
+.board-wrap-content>:nth-child(2){
+	text-align: left;
+	overflow: hidden;  		
+    text-overflow: ellipsis;  	
+    white-space: nowrap;
+    margin-left: 20px;
+}
+.board-wrap .no, .board-wrap .view-count{
+	width:10%;
+}
+.board-wrap .content{
+	width:60%;
+}
+.board-wrap .date{
+	width:20%;
+}
+.board-wrap-title{
+	background-color: #eee;
+	border-top: 2px solid #222;
+	border-bottom: 1px solid #bbb;
+	font-size: 1.1rem;
+	font-weight: bold;
+}
+.board-wrap-content{
+	border-bottom: 1px solid #bbb;
+}
+.add-area{
+	text-align: right;
+}
+.add-btn {
+  width: 130px;
+  height: 40px;
+  color: #fff;
+  border-radius: 5px;
+  padding: 10px 25px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  margin-top: 20px;
+}
+.add-btn {
+  background: rgb(45,166,82);
+background: linear-gradient(0deg, rgba(45,166,82,1) 0%, rgba(47,166,82,1) 100%);
+  width: 130px;
+  height: 40px;
+  line-height: 40px;
+  padding: 0;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+.add-btn span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+.add-btn:before,
+.add-btn:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+   background: rgba(45,166,82,1);
+  transition: all 0.3s ease;
+}
+.add-btn:before {
+  height: 0%;
+  width: 2px;
+}
+.add-btn:after {
+  width: 0%;
+  height: 2px;
+}
+.add-btn:hover{
+   background: transparent;
+  box-shadow: none;
+}
+.add-btn:hover:before {
+  height: 100%;
+}
+.add-btn:hover:after {
+  width: 100%;
+}
+.add-btn span:hover{
+   color: rgba(45,166,82,1);
+}
+.add-btn span:before,
+.add-btn span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+   background: rgba(45,166,82,1);
+  transition: all 0.3s ease;
+}
+.add-btn span:before {
+  width: 2px;
+  height: 0%;
+}
+.add-btn span:after {
+  width: 0%;
+  height: 2px;
+}
+.add-btn span:hover:before {
+  height: 100%;
+}
+.add-btn span:hover:after {
+  width: 100%;
+}

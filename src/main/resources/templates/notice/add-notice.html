@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/notice/add-notice.css">
+</head>
+
+<body>
+	<main class="view-size">
+		<div class="writetitle">
+			<div style="font-weight: bold; font-size: 2rem;">공지작성</div>
+		</div>
+		<section>
+			<div class="noticeview">
+				<table>
+					<tr>
+						<th>제목</th>
+						<td>
+							<input type="text" placeholder="내용을 입력해주세요.">
+						</td>
+					</tr>
+					<tr>
+						<th>공지 타입</th>
+						<td>
+							<input type="radio" name="type" id="notice">
+							<label for="notice">공지</label>
+							<input type="radio" name="type" id="event">
+							<label for="event">이벤트</label>
+						</td>
+					</tr>
+					<tr>
+						<th>공지기간</th>
+					</tr>
+				</table>
+			</div>
+		</section>
+	</main>
+</body>
+
+</html>
