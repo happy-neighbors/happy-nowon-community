@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/common/reset.css">
+	<link rel="stylesheet" href="/css/sign/mypage.css">
+
+</head>
+
+<body>
+	<main>
+		<div class="container">
+			<div class="left">
+				<div class="left_1">
+					<div class="ment">@@@님 환영합니다.</div>
+					<div><img class="film" src="/img/sign/person.svg"></div>
+					<a href="#">
+						<div class="modify">프로필 수정</div>
+					</a>
+				</div>
+				<div class="left_2">
+					<ul>
+						<div>회원정보</div>
+						<a href="#">
+							<li>개인정보 변경</li>
+						</a>
+						<a href="#">
+							<li>회원탈퇴</li>
+						</a>
+						<a href="#">
+							<li>간편로그인설정(oauth2)</li>
+						</a>
+					</ul>
+
+					<ul>
+						<div>(임시)나의 문의내역(임시)</div>
+						<a>
+							<li>(임시)1:1문의</li>
+						</a>
+						<a>
+							<li>(임시)분실물 문의</li>
+						</a>
+
+					</ul>
+				</div>
+			</div>
+			<div class="right">
+				<div class="profile">
+					<p>프로필 정보</p>
+					<ul class="lists">
+						<li><img src="/img/sign/profile.svg"><span>@@@</span> </li>
+						<li><img src="/img/sign/smartphone.svg"><span>010-@@@-@@@@</span></li>
+						<li><img src="/img/sign/birth.svg"><span>입력한 생일</span></li>
+					</ul>
+				</div>
+				
+				<div class="profile">
+					<p>회원정보 변경</p>
+					<ul class="lists">
+						<li><a href="#"><span>개인정보 변경</span></a></li>
+						<li><a href="#"><span>회원탈퇴</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		</div>
+
+
+
+	</main>
+</body>
+
+</html>
