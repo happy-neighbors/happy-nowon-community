@@ -4,25 +4,27 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" href="/css/notice/add-notice.css">
-	<script src="/js/notice/add-notice.js"></script>
+	<link rel="stylesheet" href="/css/common/board.css">
+	<link rel="stylesheet" href="/css/common/add-board.css">
+	<link rel="stylesheet" href="/css/town/add-town.css">
 	<link rel="stylesheet" href="/js/summernote/summernote-lite.css">
-	<script src="/js/summernote/summernote-ko-KR.js"></script>
-	<script src="/js/summernote/summernote-lite.js"></script>
-	<script src="/js/summernote/my-summernote.js"></script>
+	<script src="/js/summernote-jyj/summernote-ko-KR.js"></script>
+	<script src="/js/summernote-jyj/summernote-lite.js"></script>
+	<script src="/js/notice/add-notice.js"></script>
 </head>
 
 <body>
 	<main class="view-size">
-		<div class="writetitle">
+		<div>
 			<div style="font-weight: bold; font-size: 2rem;">공지작성</div>
+			<a href="#" sec:authentication="principal.name">회원이름</a> 님 어서오세요 !
 		</div>
-		<section class="noticeview">
+		<form class="add-wrap" action="/add-notice" method="post">
 			<table>
 				<tr>
-					<th><label for="write1">제목</label></th>
+					<th><p>제목</p></th>
 					<td>
-						<input type="text" placeholder="내용을 입력해주세요." id="write1">
+						<input type="text" placeholder="내용을 입력해주세요." id="write1" name="title">
 					</td>
 				</tr>
 				<tr>
@@ -37,9 +39,9 @@
 				<tr>
 					<th style="height: 35px;">공지 기간</th>
 					<td>
-						<input type="date" name="start_date">
+						<input type="datetime-local" name="start">
 						&nbsp;~&nbsp;
-						<input type="date" name="end_date">
+						<input type="datetime-local" name="end">
 					</td>
 				</tr>
 				<tr>
@@ -49,7 +51,10 @@
 					</td>
 				</tr>
 			</table>
-		</section>
+			<section class="add-area">
+				<button class="add-btn" type="submit"><span>등록하기</span></button>
+			</section>
+		</form>
 	</main>
 </body>
 
