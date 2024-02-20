@@ -30,17 +30,17 @@
 			</div>
 		</section>
 		<section>
-			<div class="noticelist">
+			<div class="noticelist" th:each="notice : ${nList}">
 				<ul>
 					<li>
 						<a class="flex">
-							<span class="noticespan">공지</span>
-							<div class="listtitle">공지입니다</div>
+							<span class="noticespan" th:text="${notice.type}">공지</span>
+							<div class="listtitle" th:text="${notice.title}">공지입니다</div>
 							<div class="flex count">
 								<img src="/img/notice/eye.png">
-								<p>123</p>
+								<p th:text="${notice.readCount}">123</p>
 							</div>
-							<div>2024.02.16</div>
+							<div th:text="${#temporals.format(notice.start, 'yyyy.MM.dd')}">2024.02.16</div>
 						</a>
 					</li>
 				</ul>
@@ -58,6 +58,34 @@
 					</li>
 				</ul>
 			</div>
+<!--			<div class="noticelist">-->
+<!--				<ul>-->
+<!--					<li>-->
+<!--						<a class="flex">-->
+<!--							<span class="noticespan">공지</span>-->
+<!--							<div class="listtitle">공지입니다</div>-->
+<!--							<div class="flex count">-->
+<!--								<img src="/img/notice/eye.png">-->
+<!--								<p>123</p>-->
+<!--							</div>-->
+<!--							<div>2024.02.16</div>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--				<ul>-->
+<!--					<li>-->
+<!--						<a class="flex">-->
+<!--							<span class="eventspan">이벤트</span>-->
+<!--							<div class="listtitle">이벤트입니다.</div>-->
+<!--							<div class="flex count">-->
+<!--								<img src="/img/notice/eye.png">-->
+<!--								<p>123</p>-->
+<!--							</div>-->
+<!--							<div>2024.02.16</div>-->
+<!--						</a>-->
+<!--					</li>-->
+<!--				</ul>-->
+<!--			</div>-->
 		</section>
 	</main>
 </body>
