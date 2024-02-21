@@ -23,12 +23,7 @@ public class EmployeeDetails extends User {
 	public EmployeeDetails(String empUsername, String empPassword, Collection<? extends GrantedAuthority> authorities) {
 		super(empUsername, empPassword, authorities);
 	}
-	
-	public EmployeeDetails(EmployeeEntity member, String empPassword, Collection<? extends GrantedAuthority> authorities) {
-		super(member.getEmpUsername(), empPassword, authorities);
-		this.empName=member.getEmpName();
-	}
-	
+
 	public EmployeeDetails(EmployeeEntity employeeEntity) {
 		this(employeeEntity.getEmpUsername(), employeeEntity.getEmpPassword(), employeeEntity.getMyRoles().stream()
 				.map(EmployeeRole -> new SimpleGrantedAuthority(EmployeeRole.name()))
@@ -38,5 +33,5 @@ public class EmployeeDetails extends User {
 		this.empName = employeeEntity.getEmpName();
 		this.empRole = employeeEntity.getEmpRole();
 	}
-	
+
 }

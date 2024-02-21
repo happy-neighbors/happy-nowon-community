@@ -1,10 +1,12 @@
 package com.project.community.domain.entity;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.security.core.GrantedAuthority;
 
 import com.project.community.security.EmployeeRole;
 import com.project.community.security.MyRole;
@@ -68,6 +70,7 @@ public class EmployeeEntity {
 	}
 	
 	
+
 
 	
 }

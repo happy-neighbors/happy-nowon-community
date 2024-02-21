@@ -14,9 +14,9 @@ public class EmployeeDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String empUsername) throws UsernameNotFoundException {
-		
-		
+	
 		return new EmployeeDetails(employeeEntityRepository.findByEmpUsername(empUsername).orElseThrow());
+
 	}
 	
 }
