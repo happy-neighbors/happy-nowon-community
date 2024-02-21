@@ -23,6 +23,7 @@ public class NoticeDTO extends DateEntity{
 	private Long no;
 	private String title;
 	private boolean type;
+	private Long memNo;
 	private LocalDateTime start;
 	private LocalDateTime end;
 	private String content;
@@ -31,12 +32,13 @@ public class NoticeDTO extends DateEntity{
 	private LocalDateTime updatedAt;
 	private EmployeeEntity employee;
 	
-	public NoticeEntity toEntity() {
+	public NoticeEntity toEntity(EmployeeEntity employeeEntity) {
 		return NoticeEntity.builder()
 		.no(no)
 		.title(title)
 		.type(type)
 		.start(start)
+		.employee(employeeEntity)
 		.end(end)
 		.content(content)
 		.build();
