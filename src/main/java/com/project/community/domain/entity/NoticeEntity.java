@@ -23,7 +23,7 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
+@Builder
 @Getter
 @Table(name = "notice")
 @SequenceGenerator(name = "gen_seq_notice", sequenceName = "seq_notice", initialValue = 1, allocationSize = 1)

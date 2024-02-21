@@ -46,6 +46,7 @@ public class MyOauth2userService extends DefaultOAuth2UserService{
 		if(role!=null) {
 			memberEntity.setEmpRole("USER");
 		}
+		
 		if(myoAuthUser.getEmail()!=memberEntity.getEmpUsername()) {
 			memRepo.save(memberEntity);
 		};
