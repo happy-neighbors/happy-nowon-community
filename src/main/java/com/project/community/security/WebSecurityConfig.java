@@ -40,8 +40,8 @@ public class WebSecurityConfig {
 		.authorizeHttpRequests(authorize -> authorize
 				.requestMatchers("/css/**", "/img/**", "/js/**","/sign/**","/favicon.ico","/error").permitAll()
 				//.requestMatchers("/employee/**").hasRole("SUPERVISOR")
-				.requestMatchers("/**").authenticated()
-				.anyRequest().authenticated())
+				.requestMatchers("/**").permitAll()
+				.anyRequest().permitAll())
 		
 		.formLogin(formLogin -> formLogin
 				.loginPage("/sign")
@@ -58,18 +58,8 @@ public class WebSecurityConfig {
 		
 		.exceptionHandling(accessDenied -> accessDenied
 				.accessDeniedPage("/accessDenied"))
-		.oauth2Login(oauth2->oauth2
-				.loginPage("/users/login")
-				.userInfoEndpoint(userInfo->userInfo
-				.userService(myOauth2userService())
-						)
-				)
 		;
 		
 		return http.build();
-	}
-	@Bean
-	OAuth2UserService<OAuth2UserRequest, OAuth2User> myOauth2userService() {
-		return new MyOauth2userService();
 	}
 }

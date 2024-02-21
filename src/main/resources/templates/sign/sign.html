@@ -1,11 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/common/reset.css">
+	<link rel="stylesheet" href="/css/sign/signin.css">
+	<style>
+
+	</style>
 </head>
+
 <body>
-<h1>signasdfsdfsadf</h1>
-<a href="/oauth2/authorization/google"><img src="/img/users/login/google.png"></a>
+	<main>
+		<a href="/oauth2/authorization/google"><img src="/img/users/login/google.png"></a>
+
+		<form action="/sign/signin" method="post">
+			<div class="container" style="border:0.5px solid green; border-radius:3%;">
+				<span class="title">노원 행복마당에 오신 것을 환영합니다.</span>
+				<div class="context_1">
+					<div class="wrapper">
+						<div class="id"><img src="/img/sign/person.svg"></div>
+						<input type="text" class="input" name="empUsername" id="empUsername" placeholder="아이디를 입력해주세요">
+					</div>
+					<div class="wrapper">
+						<div class="id"><img src="/img/sign/password.svg"></div>
+						<input type="text" class="input" name="empPassword" id="empPassword" placeholder="비밀번호를 입력해주세요">
+					</div>
+					<button class="btn_login" type="submit">로그인</button>
+				</div>
+		</form>
+		<div class="context_2">
+			<span>아이디 찾기 |</span>
+			<span>비밀번호 찾기 |</span>
+			<a href="/singup"><span>회원가입</span></a>
+
+		</div>
+		</div>
+
+	</main>
 </body>
+
 </html>

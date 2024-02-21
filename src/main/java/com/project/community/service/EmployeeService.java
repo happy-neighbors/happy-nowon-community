@@ -9,4 +9,11 @@ public interface EmployeeService {
 	
 	void employeeRegistration(EmployeeDTO employeeDTO);
 	
+
+	boolean existsByempUsername(String empUsername);
+	
+	void employeeUpdate(EmployeeDTO employeeDTO);
+
+
+	
 }
