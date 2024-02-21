@@ -25,9 +25,9 @@ public class CustomFailureHandler extends SimpleUrlAuthenticationFailureHandler 
 		String errorMessage;
 		
 		if (exception instanceof BadCredentialsException) {
-            errorMessage = "사용자 계정 또는 비밀번호가 일치하지 않습니다.";
+            errorMessage = "비밀번호가 일치하지 않습니다.";
         } else if (exception instanceof InternalAuthenticationServiceException) {
-            errorMessage = "사용자 계정 또는 비밀번호가 일치하지 않습니다.";
+            errorMessage = "사용자 계정이 일치하지 않습니다.";
         } else if (exception instanceof UsernameNotFoundException) {
             errorMessage = "존재하지 않는 사용자 계정입니다.";
         } else if (exception instanceof AuthenticationCredentialsNotFoundException) {

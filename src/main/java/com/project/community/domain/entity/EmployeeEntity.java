@@ -66,9 +66,10 @@ public class EmployeeEntity {
 	
 	public EmployeeEntity addRole(MyRole myRole) {
 		myRoles.add(myRole);
-		
 		return this;
 	}
+	
+	
 
 
 	
