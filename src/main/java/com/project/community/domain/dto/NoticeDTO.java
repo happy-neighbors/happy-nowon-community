@@ -6,6 +6,7 @@ import com.project.community.domain.entity.DateEntity;
 import com.project.community.domain.entity.NoticeEntity;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +14,7 @@ import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
-@SuperBuilder
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class NoticeDTO extends DateEntity{
@@ -25,14 +26,13 @@ public class NoticeDTO extends DateEntity{
 	private LocalDateTime end;
 	private String content;
 	private long readCount;
+	private LocalDateTime createdAt;
+	private LocalDateTime updatedAt;
 	
 	public NoticeEntity toEntity() {
 		return NoticeEntity.builder()
 		.no(no)
 		.title(title)
-		.readCount(getReadCount())
-		.createdAt(getCreatedAt())
-		.updatedAt(getUpdatedAt())
 		.type(type)
 		.start(start)
 		.end(end)
