@@ -20,10 +20,7 @@ public class EmployeeDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
-		EmployeeEntity member = employeeEntityRepository.findByEmpUsername(username).orElseThrow(()-> new UsernameNotFoundException(username));
-		Set<SimpleGrantedAuthority> grantedAuthority = member.getMyRoles().stream()
-				.map(myRole -> new SimpleGrantedAuthority(myRole.name())).collect(Collectors.toSet());
 		
-		return new EmployeeDetails(member, member.getEmpName(), grantedAuthority);
+		return new EmployeeDetails(employeeEntityRepository.findByEmpUsername(username).orElseThrow());
 	}
 }

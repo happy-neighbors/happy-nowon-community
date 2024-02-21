@@ -1,0 +1,39 @@
+@charset "UTF-8";
+.town-title{
+	font-size: 2rem;
+	font-weight: bold;
+	text-align: center;
+}
+.town-info-title{
+	margin-top: 30px;
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+.town-info p{
+	width:100px;
+}
+.town-info-content{
+	margin-top: 10px;
+	font-size: 1.2rem;
+}
+.town-date{
+	margin-top: 20px;
+}
+.town-date-title{
+	margin-right: 10px;
+}
+.town-date-info{
+	margin-right: 20px;
+}
+.read-count>:nth-child(1){
+	margin-right: 10px;
+}
+.line{
+	width:100%;
+	height:2px;
+	background-color: #222;
+	margin:20px 0;
+}
+.town-btn >:nth-child(1){
+	margin-right: 10px;
+}
