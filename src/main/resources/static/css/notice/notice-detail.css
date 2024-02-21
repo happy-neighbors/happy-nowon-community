@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.title{
+	border-bottom: 2px solid black;
+	padding-bottom: 20px;
+}
+.noticetitle{
+	font-weight: bold;
+	font-size: 1.3rem;
+}
+.category{
+	padding-right: 10px;
+}
+.content{
+	max-width: 789px;
+	max-height: 800px;
+	height: 600px;
+	border: 1px solid black;
+	padding: 27px 46px 20px 10px;
+}
+.writer{
+	height: 93.2px;
+	width: 350px;
+}
+
+.writer div{
+	padding: 7px 0;
+}

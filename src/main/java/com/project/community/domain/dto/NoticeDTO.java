@@ -3,6 +3,7 @@ package com.project.community.domain.dto;
 import java.time.LocalDateTime;
 
 import com.project.community.domain.entity.DateEntity;
+import com.project.community.domain.entity.EmployeeEntity;
 import com.project.community.domain.entity.NoticeEntity;
 
 import lombok.AllArgsConstructor;
@@ -28,6 +29,7 @@ public class NoticeDTO extends DateEntity{
 	private long readCount;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
+	private EmployeeEntity employee;
 	
 	public NoticeEntity toEntity() {
 		return NoticeEntity.builder()

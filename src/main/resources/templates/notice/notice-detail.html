@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/notice/notice-detail.css">
+</head>
+
+<body>
+	<main class="view-size" th:each="detail : ${DetailList}">
+		<section>
+			<div class="title">
+				<div style="font-weight: bold; font-size: 2rem;">공지사항</div>
+			</div>
+			<div class="flex">
+				<div
+					style="padding: 27px 46px 20px 0; border-bottom: 1px solid black; width: 800px; border-right: 1px solid black;">
+					<div class="flex noticetitle">
+						<div class="category" style="margin-bottom: 10px; border-right: 2px solid black;"
+							th:text="${detail.type} ? 공지 : 이벤트"></div>
+						<div style="padding-left: 10px;" th:text="${detail.title}">이벤트 입니다.</div><br>
+					</div>
+					<div th:text="${#temporals.format(detail.start, 'yyyy-MM-dd hh:mm')}" style="font-size: 0.9rem;">날짜
+					</div>
+				</div>
+				<div class="writer">
+					<div style="justify-content: center;" class="flex">
+						작성자 :&nbsp;<span>ddd</span>
+					</div>
+					<div class="flex" style="justify-content: center;">
+						조회수 :&nbsp;<span th:text="${detail.readCount}"></span>
+					</div>
+					<div class="flex" style="justify-content: center;">끝나는 날짜</div>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="content" th:uxtext="${detail.content}">
+				dsadsa
+			</div>
+		</section>
+	</main>
+</body>
+
+</html>

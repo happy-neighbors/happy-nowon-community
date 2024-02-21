@@ -10,4 +10,6 @@ public interface NoticeService {
 
 	void noticeList(Model model);
 
+	void noticeDetail(long no, Model model);
+
 }

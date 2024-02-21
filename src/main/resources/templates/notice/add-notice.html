@@ -17,7 +17,6 @@
 	<main class="view-size">
 		<div>
 			<div style="font-weight: bold; font-size: 2rem;">공지작성</div>
-			<a href="#" sec:authentication="principal.name">회원이름</a> 님 어서오세요 !
 		</div>
 		<form class="add-wrap" action="/add-notice" method="post">
 			<table>
@@ -30,9 +29,9 @@
 				<tr>
 					<th style="height: 35px;"><label>공지 타입</label></th>
 					<td>
-						<input type="radio" name="type" id="notice">
+						<input type="radio" name="type" id="notice" value="0">
 						<label for="notice">공지</label>
-						<input type="radio" name="type" id="event">
+						<input type="radio" name="type" id="event" value="1">
 						<label for="event">이벤트</label>
 					</td>
 				</tr>

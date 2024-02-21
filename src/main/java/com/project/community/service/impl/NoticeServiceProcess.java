@@ -31,4 +31,13 @@ public class NoticeServiceProcess implements NoticeService{
 				);
 	}
 
+	@Override
+	public void noticeDetail(long no, Model model) {
+		model.addAttribute("DetailList", noticeRepo.findById(no)
+				.stream()
+				.map(NoticeEntity::toDTO)
+				.collect(Collectors.toList())
+				);
+	}
+
 }
