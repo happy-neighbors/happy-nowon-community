@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/town/detail-town.css">
+</head>
+<body>
+	<main class="view-size">
+		<section>
+			<p class="town-title" th:text="${dto.title}"></p>
+			<div class="flex town-info town-info-title">
+				<p>팀장</p>
+				<p>구역</p>
+				<p>연락처</p>
+			</div>
+			<div class="flex between">
+				<div class="flex town-info town-info-content">
+					<p th:text="${dto.leader}"></p>
+					<p th:text="${dto.area}"></p>
+					<p th:text="${dto.phone}"></p>
+				</div>
+				<div class="flex town-btn">
+					<a><button>수정</button></a>
+					<a><button>삭제</button></a>
+				</div>
+			</div>
+			<div class="town-date flex between">
+				<div class="flex">
+					<p class="town-date-title">게시글등록 : </p>
+					<p class="town-date-info" th:text="${#temporals.format(dto.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></p>
+					<p class="town-date-title">최종수정 : </p>
+					<p class="town-date-info" th:text="${#temporals.format(dto.updatedAt, 'yyyy-MM-dd HH:mm:ss')}"></p>
+				</div>
+				<div class="flex read-count">
+					<p>조회수</p>
+					<p th:text="${dto.readCount}"></p>
+				</div>
+			</div>
+			<div class="line"></div>
+			<div th:text="${dto.content}"></div>
+		</section>
+	</main>
+</body>
+</html>

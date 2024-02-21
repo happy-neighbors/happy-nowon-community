@@ -13,7 +13,7 @@
 	<main class="view-size">
 		<h1>동네모임등록</h1>
 		<p style="font-size: 2rem; font-weight: bold;">동네모임등록</p>
-		<form class="add-wrap">
+		<form class="add-wrap" action="/add-town" method="post">
 			<table>
 				<tr>
 					<th>
@@ -68,11 +68,11 @@
 				
 				var formData = new FormData();
 				formData.append("goodsImg", file);
-				
+				console.log("uploadSummernoteImageFile실행")
 				$.ajax({
 					data: formData,
 					type: "POST",
-					url: "/admin/temp-upload",
+					url: "/files-temp-upload",
 					contentType: false,
 					processData: false,
 					success: function (result) {
