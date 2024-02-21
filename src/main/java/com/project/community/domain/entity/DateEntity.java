@@ -7,6 +7,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import lombok.Getter;
 
 @MappedSuperclass
@@ -15,11 +17,17 @@ public class DateEntity {
 	
 	@ColumnDefault("0")
 	private long readCount;
-	
-	@CreatedDate
 	private LocalDateTime createdAt;
-	
-	@UpdateTimestamp
 	private LocalDateTime updatedAt;
 	
+	
+	@PrePersist
+	public void prePersist() {
+		this.createdAt = LocalDateTime.now();
+	}
+	
+	@PreUpdate
+	public void preUpdate() {
+		this.updatedAt = LocalDateTime.now();
+	}
 }
