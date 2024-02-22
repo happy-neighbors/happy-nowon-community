@@ -57,6 +57,7 @@ public class TownController {
 	@GetMapping("/detail-town/{pk}")
 	public String detailTown(@PathVariable(name = "pk") long pk, Model model) {
 		townService.detailTown(pk, model);
+		townService.getCount(pk);
 		return "town/detail-town";
 	}
 	@DeleteMapping("/detail-town/{pk}")

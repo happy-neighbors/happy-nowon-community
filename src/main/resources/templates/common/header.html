@@ -3,7 +3,7 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 	<header>
 		<h1>헤더영역</h1>
-		<section class="view-size">
+		<section style="position: relative;" class="view-size">
 			<div class="flex between">
 				<a href="/"><img class="head-logo" src="/img/team-logo.png"></a>
 				<div class="flex between head-cate">
@@ -29,6 +29,9 @@
 						<p><a href="/logout">로그아웃</a></p>
 					</th:block>
 				</div>
+				<th:block sec:authorize="isAuthenticated()">
+					<a href="/take-note" class="note">쪽지함()</a>
+				</th:block>
 			</div>
 		</section>
 	</header>

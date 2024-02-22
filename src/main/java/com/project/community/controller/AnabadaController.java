@@ -55,6 +55,7 @@ public class AnabadaController {
 	@GetMapping("/detail-anabada/{pk}")
 	public String detailTown(@PathVariable(name = "pk") long pk, Model model) {
 		anabadaService.detailAnabada(pk, model);
+		anabadaService.getCount(pk);
 		return "anabada/detail-anabada";
 	}
 	@DeleteMapping("/detail-anabada/{pk}")

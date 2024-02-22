@@ -25,5 +25,7 @@ public interface TownService {
 	PageResultDTO<TownDTO, TownEntity> getList(PageRequestDTO pageRequestDTO);
 
 	List<TownEntity> getTop5Procedures();
+
+	TownEntity getCount(long pk);
 	
 }

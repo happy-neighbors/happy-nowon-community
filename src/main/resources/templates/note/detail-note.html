@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/common/board.css">
+<link rel="stylesheet" href="/css/common/add-board.css">
+<link rel="stylesheet" href="/css/note/note.css">
+</head>
+<body>
+	<main>
+		<h1>쪽지함</h1>
+		<section class="view-size flex between">
+			<div class="note-menu flex center">
+				<a href="/write-note"><button class="add-btn"><span>쪽지쓰기</span></button></a>
+				<a href="/take-note"><button class="add-btn"><span>받은쪽지</span></button></a>
+				<a href="/send-note"><button class="add-btn"><span>보낸쪽지</span></button></a>
+			</div>
+			<div class="note-right">
+				<p class="note-title" th:text="${dto.title}"></p>
+				<div class="flex writer-info">
+					<p>보낸사람 :</p>
+					<p th:text="${dto.writer}"></p>
+				</div>
+				<div class="flex writer-info">
+					<p>보낸시간 :</p>
+					<p th:text="${#temporals.format(dto.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></p>
+				</div>
+				<div class="note-line"></div>
+				<p th:text="${dto.content}"></p>
+			</div>
+		</section>
+	</main>
+</body>
+</html>
