@@ -14,6 +14,7 @@
 	<main class="view-size">
 		<section class="original">
 			<p class="town-title" th:text="${dto.title}"></p>
+			<div class="line"></div>
 			<div class="flex town-info town-info-title">
 				<p>팀장</p>
 				<p>구역</p>
@@ -48,9 +49,28 @@
 					<p th:text="${dto.readCount}"></p>
 				</div>
 			</div>
-			<div class="line"></div>
-			<div class="default" th:utext="${dto.content}"></div>
-			<a href="/town" class="go-list"><button class="add-btn"><span>목록으로</span></button></a>
+			<div class="line2"></div>
+			<div th:utext="${dto.content}"></div>
+			<div class="line2"></div>
+			<div class="comment">
+				<th:block sec:authorize="isAnonymous">
+					<p>댓글은 로그인후 작성 가능합니다.</p>
+				</th:block>
+				<th:block sec:authorize="isAuthenticated()">
+					<form action="/comment/write" method="post">
+						<p sec:authentication="principal.empName" name="writer">이름</p>
+						<div class="flex between col-center comment-write">
+							<input class="comment-content" placeholder="댓글을 입력하세요" name="content"></input>
+							<button class="add-btn commit-btn" onclick="townComment()"><span>등록</span></button>
+						</div>
+					</form>
+				</th:block>
+				<script>
+				</script>
+			</div>
+			<div class="go-list">
+				<a href="/town"><button class="add-btn"><span>목록으로</span></button></a>
+			</div>
 		</section>
 		<form class="update" th:action="|/detail-town/${dto.no}|" method="post">
 			<div class="flex center col-center update-title">

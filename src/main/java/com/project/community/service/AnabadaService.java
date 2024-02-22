@@ -1,5 +1,7 @@
 package com.project.community.service;
 
+import java.util.List;
+
 import org.springframework.security.core.Authentication;
 import org.springframework.ui.Model;
 
@@ -21,5 +23,9 @@ public interface AnabadaService {
 	void updateAnabada(long pk, String area, String content, String title, String state);
 
 	PageResultDTO<AnabadaDTO, AnabadaEntity> getList(PageRequestDTO pageRequestDTO);
+
+	List<AnabadaEntity> getTop5Procedures();
+
+	AnabadaEntity getCount(long pk);
 	
 }

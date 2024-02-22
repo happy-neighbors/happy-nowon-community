@@ -9,5 +9,7 @@ public interface AnabadaEntityRepository extends JpaRepository<AnabadaEntity, Lo
 	List<AnabadaEntity> findByEmployee(EmployeeEntity en);
 
 	List<AnabadaEntity> findByEmployee_empNo(long empNo);
+
+	List<AnabadaEntity> findTop5ByOrderByNoDesc();
 	
 }

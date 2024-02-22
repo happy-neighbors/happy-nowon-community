@@ -1,9 +1,11 @@
 package com.project.community.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.apache.ibatis.datasource.DataSourceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -91,6 +93,21 @@ public class TownServiceProcess implements TownService{
 	@Override
 	public List<TownEntity> getTop5Procedures() {
 		return townRepo.findTop5ByOrderByNoDesc();
+	}
+
+	@Override
+	public TownEntity getCount(long pk) {
+		Optional<TownEntity> town=this.townRepo.findById(pk);
+		if(town.isPresent()) {
+			TownEntity town1 = town.get();
+			town1.setReadCount(town1.getReadCount()+1);
+			this.townRepo.save(town1);
+			return town1;
+		}else {
+			throw new DataSourceException("question not found");
+		}
+		
+		
 	}
 
 	

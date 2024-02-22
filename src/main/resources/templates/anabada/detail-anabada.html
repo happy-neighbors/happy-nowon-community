@@ -14,6 +14,7 @@
 	<main class="view-size">
 		<section class="original">
 			<p class="town-title" th:text="${dto.title}"></p>
+			<div class="line"></div>
 			<div class="flex town-info town-info-title">
 				<p>주최자</p>
 				<p>구역</p>
@@ -50,9 +51,13 @@
 					<p th:text="${dto.readCount}"></p>
 				</div>
 			</div>
-			<div class="line"></div>
+			<div class="line2"></div>
 			<div class="default" th:utext="${dto.content}"></div>
-			<a href="/anabada" class="go-list"><button class="add-btn"><span>목록으로</span></button></a>
+			<div class="line2"></div>
+			<div class="go-list">
+				<a href="/write-note"><button class="add-btn"><span>쪽지보내기</span></button></a>
+				<a href="/anabada"><button class="add-btn"><span>목록으로</span></button></a>
+			</div>
 		</section>
 		<form class="update" th:action="|/detail-anabada/${dto.no}|" method="post">
 			<div class="flex center col-center update-title">

@@ -1,8 +1,11 @@
 package com.project.community.service.impl;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import org.apache.ibatis.datasource.DataSourceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -83,6 +86,26 @@ public class AnabadaServiceProcess implements AnabadaService{
 	public void updateAnabada(long pk, String area, String content, String title, String state) {
 		anabadaRepo.findById(pk).orElseThrow()
 				.update(area, content, title, state);
+		
+	}
+
+	@Override
+	public List<AnabadaEntity> getTop5Procedures() {
+		return anabadaRepo.findTop5ByOrderByNoDesc();
+		
+	}
+
+	@Override
+	public AnabadaEntity getCount(long pk) {
+		Optional<AnabadaEntity> anabada=this.anabadaRepo.findById(pk);
+		if(anabada.isPresent()) {
+			AnabadaEntity anabada1 = anabada.get();
+			anabada1.setReadCount(anabada1.getReadCount()+1);
+			this.anabadaRepo.save(anabada1);
+			return anabada1;
+		}else {
+			throw new DataSourceException("question not found");
+		}
 		
 	}
 
