@@ -37,46 +37,20 @@
 			</div>
 		</section>
 		<section>
-			<div class="noticelist" th:each="notice : ${page.dtoList}">
+			<div class="noticelist" th:each="k:${keyList}">
 				<ul>
 					<li>
-						<a class="flex" th:href="@{'/notice-detail/' + ${notice.no}}">
-							<span class="noticespan" th:text="${notice.type} ? 이벤트 : 공지"
-								th:id="'notice_' + ${notice.type}"></span>
-							<div class="listtitle" th:text="${notice.title}" th:if="${notice.end}"></div>
+						<a class="flex" th:href="@{'/notice-detail/' + ${k.no}}">
+							<div class="listtitle" th:text="${k.title}" th:if="${k.end}"></div>
 							<div class="flex count">
 								<img src="/img/notice/eye.png">
-								<p th:text="${notice.readCount}"></p>
+								<p th:text="${k.readCount}"></p>
 							</div>
-							<div th:text="${#temporals.format(notice.start, 'yyyy.MM.dd')}"></div>
+							<div th:text="${#temporals.format(k.start, 'yyyy.MM.dd')}"></div>
 						</a>
 					</li>
 				</ul>
 			</div>
-			<ul class="page-list flex center">
-				<li class="page-item pageNum page-prev" th:if="${page.prev}">
-					<a class="page-link" th:href="@{/anabada(page=${page.start -1})}" tabindex="-1">
-						<img src="/img/common/left.svg">
-					</a>
-					<span></span>
-				</li>
-				<th:block th:each="page:${page.pageList}">
-					<li>
-						<div class="pageNum"
-							th:class="${#strings.equals(param.page, page) ? 'highlighted' : ''} + ${param.page == null && page == 1? 'highlighted' : ''}">
-							<a th:href="@{/notice(page=${page})}">
-								<p th:text="${page}"></p>
-							</a>
-						</div>
-					</li>
-					<span></span>
-				</th:block>
-				<l1 class="page-item pageNum page-next" th:if="${page.next}">
-					<a class="page-link" th:href="@{/anabada(page=${page.end+1})}">
-						<img src="/img/common/right.svg">
-					</a>
-				</l1>
-			</ul>
 		</section>
 		<section class="add-area">
 			<a href="/add-notice"><button class="add-btn"><span>글쓰기</span></button></a>
