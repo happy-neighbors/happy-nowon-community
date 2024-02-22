@@ -10,6 +10,7 @@
 	<script src="/js/summernote-jyj/summernote-ko-KR.js"></script>
 	<script src="/js/summernote-jyj/summernote-lite.js"></script>
 	<script src="/js/notice/notice-edit.js"></script>
+	<link rel="stylesheet" href="/css/common/board.css">
 </head>
 
 <body>
@@ -51,9 +52,9 @@
 				<textarea id="summernote" name="content">[[${detail.content}]]</textarea>
 				<div class="last"></div>
 			</section>
-			<section>
-				<button type="submit" id="editBtn">수정완료</button>
-				<button type="submit" id="cancel"><a href="/notice">취소</a></button>
+			<section class="buttonarea flex">
+				<button type="submit" class="add-btn" style="margin-right: 10px;"><span>수정완료</span></button>
+				<a href="/notice"><button type="submit" class="add-btn" style="margin-left: 10px;"><span>취소</span></button></a>
 			</section>
 		</form>
 	</main>

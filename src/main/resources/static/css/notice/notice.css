@@ -86,7 +86,7 @@
 	color: mediumpurple;
 	text-align: center;
 }
-li{
+.noticelist ul li{
 	border-bottom: 1px solid #ddd;
 }
 li a{
@@ -106,4 +106,23 @@ li .count{
 }
 li .count img{
 	padding-right: 5px;
+}
+
+
+
+/*notice-event.html*/
+.first-event{
+	background-color: white;
+	border-right: 1px solid #ddd;
+	border-left: 1px solid #ddd;
+}
+
+/*notice-notice.html*/
+.event-notice{
+	border-bottom: 1px solid #ddd;
+}
+
+.first-notice{
+	border-left: 1px solid #ddd;
+	background-color: white;
 }
