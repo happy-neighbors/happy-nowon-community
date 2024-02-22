@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+.title{
+	border-bottom: 2px solid black;
+	padding-bottom: 20px;
+}
+.noticetitle{
+	font-weight: bold;
+	font-size: 1.3rem;
+}
+.category{
+	padding-right: 10px;
+	margin-bottom: 10px; 
+	border-right: 2px solid #eee;
+}
+.content{
+	max-width: 789px;
+	max-height: 800px;
+	height: 600px;
+	padding: 27px 46px 20px 10px;
+	border-right: 1px solid #eee;
+}
+.writer{
+	height: 93.2px;
+	width: 354px;
+}
+
+.writer div{
+	padding: 7.3px 0;
+}
+.last{
+	border-bottom: 1px solid #eee;
+}
+#editBtn, .cancel{
+	background-color: #4CAF50;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+#editBtn a{
+	color: white;
+}
+
+#editBtn:hover .cancel{
+    background-color: #45a049;
+}
+
+#deleteBtn {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    font-size: 16px;
+    margin-right: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#deleteBtn:hover {
+    background-color: #d32f2f;
+}
+
+.buttonarea{
+	justify-content: center;
+	margin-top: 50px;
+}

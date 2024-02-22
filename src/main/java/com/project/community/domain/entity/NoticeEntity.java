@@ -11,6 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -18,13 +19,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import lombok.Setter;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Getter
+@Setter
 @Table(name = "notice")
 @SequenceGenerator(name = "gen_seq_notice", sequenceName = "seq_notice", initialValue = 1, allocationSize = 1)
 public class NoticeEntity extends DateEntity {
@@ -34,7 +36,7 @@ public class NoticeEntity extends DateEntity {
 	private Long no;
 	@Column(nullable = false)
 	private String title;
-	@Column(nullable = false)
+	@Column(columnDefinition = "text", nullable = false)
 	private String content;
 	@Column(nullable = false)
 	private boolean type;
@@ -46,6 +48,7 @@ public class NoticeEntity extends DateEntity {
 	
 	
 	@ManyToOne
+	@JoinColumn(name = "empNo", nullable = false)
 	private EmployeeEntity employee;
 	
 	public NoticeDTO toDTO() {
@@ -55,6 +58,7 @@ public class NoticeEntity extends DateEntity {
 				.readCount(getReadCount())
 				.createdAt(getCreatedAt())
 				.updatedAt(getUpdatedAt())
+				.memNo(employee.getEmpNo())
 				.type(type)
 				.start(start)
 				.end(end)

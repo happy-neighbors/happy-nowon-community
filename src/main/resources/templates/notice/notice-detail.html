@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/notice/notice-detail.css">
+	<script src="/js/notice/notice-detail.js"></script>
+</head>
+
+<body>
+	<main class="view-size" th:each="detail : ${DetailList}">
+		<section>
+			<div class="title">
+				<div style="font-weight: bold; font-size: 2rem;">공지사항</div>
+			</div>
+			<div class="flex">
+				<div
+					style="padding: 27px 46px 20px 0; border-bottom: 1px solid #eee; width: 800px; border-right: 1px solid #eee;">
+					<div class="flex noticetitle">
+						<div class="category" th:text="${detail.type} ? 이벤트 : 공지"></div>
+						<div style="padding-left: 10px;" th:text="${detail.title}"></div><br>
+					</div>
+					<div th:text="${#temporals.format(detail.start, 'yyyy-MM-dd hh:mm')}" style="font-size: 0.9rem;">날짜
+					</div>
+				</div>
+				<div class="writer">
+					<div style="justify-content: center;" class="flex">
+						작성자 :&nbsp;<span th:text="${detail.memNo}"></span>
+					</div>
+					<div class="flex" style="justify-content: center;">
+						조회수 :&nbsp;<span th:text="${detail.readCount}"></span>
+					</div>
+					<div class="flex"
+						style="justify-content: center; border-bottom: 1px solid #eee; font-size: 0.9rem;">
+						공지 종료일 :&nbsp;<span th:text="${#temporals.format(detail.end, 'yyyy-MM-dd hh:mm')}"></span>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section>
+			<div class="content" th:utext="${detail.content}">
+				dsadsa
+			</div>
+			<div class="last"></div>
+		</section>
+		<section class="flex buttonarea">
+			<button type="submit" id="editBtn"><a th:href="@{'/notice-edit/' + ${detail.no}}">수정</a></button>
+			<form th:action="@{'/notice-detail/' + ${detail.no}}" method="post">
+				<input type="hidden" name="_method" value="delete">
+				<button type="submit" id="deleteBtn">삭제</button>
+			</form>
+		</section>
+	</main>
+</body>
+
+</html>

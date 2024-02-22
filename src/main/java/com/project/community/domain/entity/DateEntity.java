@@ -29,4 +29,6 @@ public class DateEntity {
 	public void preUpdate() {
 		this.updatedAt = LocalDateTime.now();
 	}
+
 }
+
