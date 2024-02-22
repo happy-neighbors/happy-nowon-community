@@ -5,6 +5,13 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="/css/common/board.css">
 <link rel="stylesheet" href="/css/anabada/anabada.css">
+<style th:inline="text">
+    /* Thymeleaf를 통해 동적으로 CSS를 적용하는 예제 */
+    .highlighted {
+        background-color: #2EA652;
+        border-radius: 50%;
+    }
+</style>
 </head>
 <body>
 	<main class="view-size">
@@ -15,17 +22,43 @@
 				<p class="no">번호</p>
 				<p class="situation">상태</p>
 				<p class="title">제목</p>
+				<p class="view-count">장소</p>
 				<p class="view-count">조회수</p>
 				<p class="date">수정일</p>
 			</div>
-			<a href="#" class="flex between col-center board-wrap board-wrap-content">
-				<p class="no">번호</p>
-				<p class="situation">상태</p>
-				<p class="title">제목</p>
-				<p class="view-count">조회수</p>
-				<p class="date">수정일</p>
+			<a th:href="@{/detail-anabada/{pk}(pk=${anaba.no})}" class="flex between col-center board-wrap board-wrap-content" th:each="anaba :${result.dtoList}">
+				<p class="no" th:text="${anaba.no}">번호</p>
+				<p class="situation" th:text="${anaba.state}">상태</p>
+				<p class="title" th:text="${anaba.title}">제목</p>
+				<p class="view-count" th:text="${anaba.area}">장소</p>
+				<p class="view-count" th:text="${anaba.readCount}">조회수</p>
+				<p class="date" th:if="${anaba.updatedAt == null}" th:text="${#temporals.format(anaba.createdAt, 'yyyy-MM-dd HH:mm:ss')}">수정일</p>
+				<p class="date" th:if="${anaba.updatedAt != null}" th:text="${#temporals.format(anaba.updatedAt, 'yyyy-MM-dd HH:mm:ss')}">수정일</p>
 			</a>
 		</section>
+		<ul class="page-list flex center">
+			<li class="page-item pageNum page-prev" th:if="${result.prev}">
+				<a class="page-link" th:href="@{/anabada(page=${result.start -1})}" tabindex="-1">
+		  	      <img src="/img/common/left.svg">
+		   	    </a>
+		   	    <span></span>
+			</li>
+			<th:block th:each="page:${result.pageList}">
+				<li>
+					<div class="pageNum" th:class="${#strings.equals(param.page, page) ? 'highlighted' : ''} + ${param.page == null && page == 1? 'highlighted' : ''}">
+			        	<a th:href="@{/anabada(page=${page})}">
+							<p th:text="${page}"></p>
+						</a> 
+					</div>
+				</li>
+				<span></span>
+			</th:block>
+			<l1 class="page-item pageNum page-next" th:if="${result.next}">
+				<a class="page-link" th:href="@{/anabada(page=${result.end+1})}">
+		        	<img src="/img/common/right.svg">
+		       	</a>
+			</l1>
+		</ul>
 		<section class="add-area">
 			<a href="/add-anabada"><button class="add-btn"><span>글쓰기</span></button></a>
 		</section>

@@ -15,21 +15,23 @@
 		<section class="original">
 			<p class="town-title" th:text="${dto.title}"></p>
 			<div class="flex town-info town-info-title">
-				<p>팀장</p>
+				<p>주최자</p>
 				<p>구역</p>
 				<p>연락처</p>
+				<p>상태</p>
 			</div>
 			<div class="flex col-center between">
 				<div class="flex town-info town-info-content">
-					<p th:text="${dto.leader}"></p>
+					<p th:text="${dto.writer}"></p>
 					<p th:text="${dto.area}"></p>
 					<p th:text="${dto.phone}"></p>
+					<p th:text="${dto.state}"></p>
 				</div>
 				<div class="flex town-btn">
 					<td class="flex center">
 						<button class="add-btn board-btn" type="button" onclick="update()"><span>수정</span></button>
 					</td>
-					<form th:action="|/detail-town/${dto.no}|" method="POST">
+					<form th:action="|/detail-anabada/${dto.no}|" method="POST">
 						<input type="hidden" name="_method" value="delete" />
 						<button class="add-btn board-btn"><span>삭제</span></button>	
 					</form>
@@ -50,23 +52,29 @@
 			</div>
 			<div class="line"></div>
 			<div class="default" th:utext="${dto.content}"></div>
-			<a href="/town" class="go-list"><button class="add-btn"><span>목록으로</span></button></a>
+			<a href="/anabada" class="go-list"><button class="add-btn"><span>목록으로</span></button></a>
 		</section>
-		<form class="update" th:action="|/detail-town/${dto.no}|" method="post">
+		<form class="update" th:action="|/detail-anabada/${dto.no}|" method="post">
 			<div class="flex center col-center update-title">
-				<p>모임명 : </p>
+				<p>제목 : </p>
 				<input class="town-title" type="text" name="title" th:value="${dto.title}">
 			</div>
 			<div class="flex town-info town-info-title">
-				<p>팀장</p>
+				<p>주최자</p>
 				<p>구역</p>
 				<p>연락처</p>
+				<p>상태</p>
 			</div>
 			<div class="flex col-center between">
 				<div class="flex town-info town-info-content">
-					<p th:text="${dto.leader}"></p>
+					<p th:text="${dto.writer}"></p>
 					<input name="area" th:value="${dto.area}">
 					<p th:text="${dto.phone}"></p>
+					<select name="state">
+						<option value="진행중">진행중</option>
+						<option value="대기중">대기중</option>
+						<option value="종료">종료</option>
+					</select>
 				</div>
 				<div class="flex town-btn">
 					<td class="flex center">

@@ -12,21 +12,29 @@
 	<main class="view-size">
 		<h1>아나바다등록</h1>
 		<p style="font-size: 2rem; font-weight: bold;">아나바다등록</p>
-		<form class="add-wrap">
+		<form class="add-wrap" action="/add-anabada" method="post">
 			<table>
 				<tr>
 					<th>
-						<p>상품명</p>
+						<p>제목</p>
 					</th>
-					<td>
-						<input type="text" name="goods" placeholder="상품명을 입력해주세요">
+					<td colspan="3">
+						<input type="text" name="title" placeholder="제목을 입력해주세요">
+					</td>
+				</tr>
+				<tr>
+					<th>
+						<p>주최자</p>
+					</th>
+					<td colspan="3"> 
+						<input type="text" name="writer" placeholder="주최자를 입력해주세요">
 					</td>
 				</tr>
 				<tr>
 					<th>
 						<p>연락처</p>
 					</th>
-					<td>
+					<td colspan="3">
 						<input type="text" name="phone" placeholder="연락처를 입력해주세요">
 					</td>
 				</tr>
@@ -35,14 +43,26 @@
 						<p>장소</p>
 					</th>
 					<td>
-						<input type="text" name="area" placeholder="활동구역 입력해주세요">
+						<input type="text" name="area" placeholder="장소를 입력해주세요">
 					</td>
+					<th >
+						<p>상태</p>
+					</th>
+					<td>
+						<select name="state">
+							<option value="진행중">진행중</option>
+							<option value="대기중">대기중</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					
 				</tr>
 				<tr>
 					<th>
 						<p>상세설명</p>
 					</th>
-					<td>
+					<td colspan="3">
 						<textarea id="summernote" name="content"></textarea>
 					</td>
 				</tr>
@@ -65,7 +85,7 @@
 				$.ajax({
 					data: formData,
 					type: "POST",
-					url: "/admin/temp-upload",
+					url: "/files-temp-upload-anabada",
 					contentType: false,
 					processData: false,
 					success: function (result) {
