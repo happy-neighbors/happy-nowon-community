@@ -53,7 +53,7 @@ public class WebSecurityConfig {
 				.permitAll())
 		
 		.logout(logout -> logout
-				.logoutSuccessUrl("/sign")
+				.logoutSuccessUrl("/")
 				.invalidateHttpSession(true))
 		
 		.exceptionHandling(accessDenied -> accessDenied

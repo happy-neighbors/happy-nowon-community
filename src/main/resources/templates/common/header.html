@@ -18,9 +18,16 @@
 					</a>
 				</div>
 				<div class="flex between col-center head-user">
-					<p><a href="#">로그인</a></p>
-					<span></span>
-					<p><a href="#">회원가입</a></p>
+					<th:block sec:authorize="isAnonymous">
+						<p><a href="/sign">로그인</a></p>
+						<span></span>
+						<p><a href="/signup">회원가입</a></p>
+					</th:block>
+					<th:block sec:authorize="isAuthenticated()">
+						<p><a sec:authentication="principal.empName">이름</a>님</p>
+						<span></span>
+						<p><a href="/logout">로그아웃</a></p>
+					</th:block>
 				</div>
 			</div>
 		</section>

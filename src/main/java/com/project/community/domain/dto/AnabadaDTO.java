@@ -2,8 +2,8 @@ package com.project.community.domain.dto;
 
 import java.time.LocalDateTime;
 
+import com.project.community.domain.entity.AnabadaEntity;
 import com.project.community.domain.entity.EmployeeEntity;
-import com.project.community.domain.entity.TownEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,27 +18,29 @@ import lombok.ToString;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TownDTO {
+public class AnabadaDTO {
 	
 	private long no;
 	private String title;
-	private String leader;
+	private String writer;
 	private String phone;
 	private String area;
 	private String content;
+	private String state;
 	private long empNo;
 	private long readCount;
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	
-	public TownEntity toEntity(EmployeeEntity employeeEntity) {
-		return TownEntity.builder()
+	public AnabadaEntity toEntity(EmployeeEntity employeeEntity) {
+		return AnabadaEntity.builder()
 				.no(no)
 				.title(title)
-				.leader(leader)
+				.writer(writer)
 				.phone(phone)
 				.area(area)
 				.content(content)
+				.state(state)
 				.employee(employeeEntity)
 				.build();
 	}

@@ -1,6 +1,6 @@
 package com.project.community.domain.entity;
 
-import com.project.community.domain.dto.TownDTO;
+import com.project.community.domain.dto.AnabadaDTO;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,40 +21,43 @@ import lombok.Setter;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="town")
+@Table(name="anabada")
 @Entity
-public class TownEntity extends DateEntity {
+public class AnabadaEntity extends DateEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long no;
 	private String title;
-	private String leader;
+	private String writer;
 	private String phone;
 	private String area;
 	@Column(columnDefinition = "longtext")
 	private String content;
+	private String state;
 	@ManyToOne
 	@JoinColumn(name = "employee_empNo", nullable = false)
     private EmployeeEntity employee;
-	public TownDTO toTownDTO() {
-		return TownDTO.builder()
+	public AnabadaDTO toAnabadaDTO() {
+		return AnabadaDTO.builder()
 				.no(no)
 				.title(title)
-				.leader(leader)
+				.writer(writer)
 				.phone(phone)
 				.area(area)
 				.content(content)
 				.empNo(employee.getEmpNo())
+				.state(state)
 				.readCount(getReadCount())
 				.createdAt(getCreatedAt())
 				.updatedAt(getUpdatedAt())
 				.build();
 	}
-	public TownEntity update(String area, String content, String title) {
+	public AnabadaEntity update(String area, String content, String title, String state) {
 		this.area=area;
 		this.content=content;
 		this.title=title;
+		this.state=state;
 		return this;
 	}
 

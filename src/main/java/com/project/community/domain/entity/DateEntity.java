@@ -20,7 +20,6 @@ public class DateEntity {
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	
-	
 	@PrePersist
 	public void prePersist() {
 		this.createdAt = LocalDateTime.now();
@@ -30,4 +29,6 @@ public class DateEntity {
 	public void preUpdate() {
 		this.updatedAt = LocalDateTime.now();
 	}
+
 }
+

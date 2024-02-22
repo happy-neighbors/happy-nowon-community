@@ -122,3 +122,24 @@ background: linear-gradient(0deg, rgba(45,166,82,1) 0%, rgba(47,166,82,1) 100%);
 .add-btn span:hover:after {
   width: 100%;
 }
+.page-list{
+	margin-top: 20px;
+	font-size: 1.3rem;
+	font-weight: bold;
+}
+.page-list a{
+	width:30px;
+	height:30px;
+	display: block;
+	position: relative;
+}
+.page-list a p{
+	position: absolute;
+	top:50%;
+	left:50%;
+	transform: translate(-50%,-50%);
+}
+.page-list span{
+	display: block;
+	width:20px;
+}
