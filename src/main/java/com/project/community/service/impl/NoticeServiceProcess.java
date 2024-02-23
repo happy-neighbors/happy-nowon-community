@@ -25,6 +25,8 @@ import com.project.community.domain.entity.NoticeEntityRepository;
 import com.project.community.security.EmployeeDetails;
 import com.project.community.service.NoticeService;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class NoticeServiceProcess implements NoticeService{
 
@@ -108,9 +110,9 @@ public class NoticeServiceProcess implements NoticeService{
 	}
 
 	//검색
-	@Override
+	@Transactional
 	public List<NoticeDTO> search(String keyword) {
-		List<NoticeEntity> nEntity = noticeRepo.findByTitle(keyword);
+		List<NoticeEntity> nEntity = noticeRepo.findByTitleContaining(keyword);
 		List<NoticeDTO> nDTO = new ArrayList<>();
 		
 		if(nEntity.isEmpty()) return nDTO;
@@ -126,9 +128,12 @@ public class NoticeServiceProcess implements NoticeService{
 				.title(noticeEntity.getTitle())
 				.content(noticeEntity.getContent())
 				.end(noticeEntity.getEnd())
+				.type(noticeEntity.isType())
 				.start(noticeEntity.getStart())
 				.readCount(noticeEntity.getReadCount())
 				.build();
 	}
+
+
 
 }
