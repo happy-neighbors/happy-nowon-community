@@ -1,14 +1,9 @@
 package com.project.community.domain.entity;
 
-import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.security.core.GrantedAuthority;
-
-import com.project.community.security.EmployeeRole;
+import com.project.community.domain.dto.employeeUpdateDTO;
 import com.project.community.security.MyRole;
 
 import jakarta.persistence.CollectionTable;
@@ -52,6 +47,12 @@ public class EmployeeEntity {
 	@Column(nullable = false)
 	private String empName;
 	
+	@Column
+	private String empBirth;
+	
+	@Column
+	private String empPhone;
+	
 	
 	private String empRole;
 	
@@ -68,6 +69,14 @@ public class EmployeeEntity {
 		myRoles.add(myRole);
 		return this;
 	}
+
+	public EmployeeEntity updateTitleAndContent(employeeUpdateDTO dto) {
+		empPassword=dto.getEmpPassword();
+		empPhone=dto.getEmpPhone();
+		return this;
+	}
+	
+	
 	
 	
 

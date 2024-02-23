@@ -39,8 +39,7 @@ public class WebSecurityConfig {
 
 		.authorizeHttpRequests(authorize -> authorize
 				.requestMatchers("/css/**", "/img/**", "/js/**","/sign/**","/favicon.ico","/error").permitAll()
-				//.requestMatchers("/employee/**").hasRole("SUPERVISOR")
-				.requestMatchers("/**").permitAll()
+				.requestMatchers("/admin/**").authenticated()
 				.anyRequest().permitAll())
 		
 		.formLogin(formLogin -> formLogin

@@ -4,7 +4,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" href="/css/common/reset.css">
 	<link rel="stylesheet" href="/css/sign/signin.css">
 	<style>
 
@@ -13,10 +12,9 @@
 
 <body>
 	<main>
-		<a href="/oauth2/authorization/google"><img src="/img/users/login/google.png"></a>
 
 		<form action="/sign/signin" method="post">
-			<div class="container" style="border:0.5px solid green; border-radius:3%;">
+			<div class="container" style="border:5px solid green; border-radius:3%;">
 				<span class="title">노원 행복마당에 오신 것을 환영합니다.</span>
 				<div class="context_1">
 					<div class="wrapper">
@@ -25,7 +23,7 @@
 					</div>
 					<div class="wrapper">
 						<div class="id"><img src="/img/sign/password.svg"></div>
-						<input type="text" class="input" name="empPassword" id="empPassword" placeholder="비밀번호를 입력해주세요">
+						<input type="password" class="input" name="empPassword" id="empPassword" placeholder="비밀번호를 입력해주세요">
 					</div>
 					<button class="btn_login" type="submit">로그인</button>
 				</div>
@@ -33,7 +31,7 @@
 		<div class="context_2">
 			<span>아이디 찾기 |</span>
 			<span>비밀번호 찾기 |</span>
-			<a href="/singup"><span>회원가입</span></a>
+			<a href="/signup"><span>회원가입</span></a>
 
 		</div>
 		</div>

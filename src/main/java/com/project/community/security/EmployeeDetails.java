@@ -1,5 +1,6 @@
 package com.project.community.security;
 
+import java.math.BigInteger;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -19,19 +20,21 @@ public class EmployeeDetails extends User {
 	private long empNo;
 	private String empName;
 	private String empRole;
+	private String empPhone;
 	
-	public EmployeeDetails(String empUsername, String empPassword, Collection<? extends GrantedAuthority> authorities) {
+	public EmployeeDetails(String empUsername, String empPassword, String empPhone, Collection<? extends GrantedAuthority> authorities) {
 		super(empUsername, empPassword, authorities);
 	}
 
 	public EmployeeDetails(EmployeeEntity employeeEntity) {
-		this(employeeEntity.getEmpUsername(), employeeEntity.getEmpPassword(), employeeEntity.getMyRoles().stream()
+		this(employeeEntity.getEmpUsername(), employeeEntity.getEmpPassword(), employeeEntity.getEmpPhone(), employeeEntity.getMyRoles().stream()
 				.map(EmployeeRole -> new SimpleGrantedAuthority(EmployeeRole.name()))
 				.collect(Collectors.toSet()));
 
 		this.empNo = employeeEntity.getEmpNo();
 		this.empName = employeeEntity.getEmpName();
 		this.empRole = employeeEntity.getEmpRole();
+		this.empPhone= employeeEntity.getEmpPhone();
 	}
 
 }
