@@ -30,5 +30,7 @@ public interface NoticeService {
 
 	List<NoticeDTO> search(String keyword);
 
+	List<NoticeEntity> getTop5Procedures();
+
 
 }

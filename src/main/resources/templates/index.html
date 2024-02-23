@@ -76,12 +76,11 @@
 						<a href="/notice">더보기+</a>
 					</div>
 					<div class="board-area">
-						<!--작업할때 최근작성된거 5개
-						index.css .board .board-info .board-area에 border 제외-->
-						<div class="flex between col-center board-box"><!--타임리프forEach돌릴것-->
-							<p class="board-title">제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목제목</p>
-							<p class="board-date">2024.00.00</p>
-						</div>
+						<a th:href="@{/notice-detail/{pk}(pk=${notice.no})}" class="flex between col-center board-box" th:each="notice:${top53}" th:limit="5"><!--타임리프forEach돌릴것-->
+							<p class="board-title" th:text="${notice.title}">제목</p>
+							<p class="board-date" th:if="${notice.updatedAt == null}" th:text="${#temporals.format(notice.createdAt, 'yyyy.MM.dd')}"></p>
+							<p class="board-date" th:if="${notice.updatedAt != null}" th:text="${#temporals.format(notice.updatedAt, 'yyyy.MM.dd')}"></p>
+						</a>
 					</div>
 				</section>
 			</section>
