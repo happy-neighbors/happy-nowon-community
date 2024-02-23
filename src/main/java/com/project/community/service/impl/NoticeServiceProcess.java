@@ -134,6 +134,11 @@ public class NoticeServiceProcess implements NoticeService{
 				.build();
 	}
 
+	@Override
+	public List<NoticeEntity> getTop5Procedures() {
+		return noticeRepo.findTop5ByOrderByNoDesc();
+	}
+
 
 
 }

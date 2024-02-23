@@ -11,4 +11,6 @@ public interface NoticeEntityRepository extends JpaRepository<NoticeEntity, Long
 	@Query("SELECT n FROM NoticeEntity n WHERE n.title LIKE %:keyword%")
 	List<NoticeEntity> findByTitleContaining(@Param("keyword") String keyword);
 
+	List<NoticeEntity> findTop5ByOrderByNoDesc();
+
 }
