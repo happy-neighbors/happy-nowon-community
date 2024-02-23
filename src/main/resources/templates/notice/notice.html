@@ -12,6 +12,9 @@
 			background-color: #2EA652;
 			border-radius: 50%;
 		}
+		.searchbtn{
+			cursor: pointer;
+		}
 	</style>
 </head>
 
@@ -19,7 +22,7 @@
 	<main class="view-size">
 		<section>
 			<div class="flex title">
-				<div style="font-size: 2rem; font-weight: bold;">공지사항</div>
+				<a href="/notice"><div style="font-size: 2rem; font-weight: bold;">공지사항</div></a>
 				<form action="/notice/search" method="get">
 					<div class="search-area">
 						<input class="search" type="text" name="keyword" placeholder="검색어를 입력해주세요"></input>
@@ -43,7 +46,12 @@
 						<a class="flex" th:href="@{'/notice-detail/' + ${notice.no}}">
 							<span class="noticespan" th:text="${notice.type} ? 이벤트 : 공지"
 								th:id="'notice_' + ${notice.type}"></span>
-							<div class="listtitle" th:text="${notice.title}" th:if="${notice.end}"></div>
+							<th:block th:if="${notice.end} lt ${#temporals.createNow()}">
+								<p class="listtitle cancel-line" th:text="${notice.title}" th:if="${notice.end}"></p>
+							</th:block>
+							<th:block th:if="${notice.end} gt ${#temporals.createNow()}">
+							    <p class="listtitle" th:text="${notice.title}" th:if="${notice.end}"></p>
+							</th:block>
 							<div class="flex count">
 								<img src="/img/notice/eye.png">
 								<p th:text="${notice.readCount}"></p>

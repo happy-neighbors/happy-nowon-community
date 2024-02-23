@@ -13,7 +13,9 @@
 	<main class="view-size" th:each="detail : ${DetailList}">
 		<section>
 			<div class="title">
-				<div style="font-weight: bold; font-size: 2rem;">공지사항</div>
+				<a href="/notice">
+					<div style="font-size: 2rem; font-weight: bold;">공지사항</div>
+				</a>
 			</div>
 			<div class="flex">
 				<div class="titlearea">
@@ -25,14 +27,17 @@
 					</div>
 				</div>
 				<div class="writer">
-					<div style="justify-content: center;" class="flex">
+					<div class="flex center">
 						작성자 :&nbsp;<span sec:authentication="principal.empName"></span>
 					</div>
-					<div class="flex" style="justify-content: center;">
+					<div class="flex center">
 						조회수 :&nbsp;<span th:text="${detail.readCount}"></span>
 					</div>
-					<div class="flex"
-						style="justify-content: center; border-bottom: 1px solid #eee; font-size: 0.9rem;">
+					<div class="flex center" style="font-size: 0.9rem;">
+						최종 수정 :&nbsp;<span th:text="${#temporals.format(detail.UpdatedAt, 'yyyy-MM-dd hh:mm')}"></span>
+					</div>
+					<div class="flex center"
+						style="border-bottom: 1px solid #eee; font-size: 0.9rem;">
 						공지 종료일 :&nbsp;<span th:text="${#temporals.format(detail.end, 'yyyy-MM-dd hh:mm')}"></span>
 					</div>
 				</div>
@@ -45,7 +50,8 @@
 			<div class="last"></div>
 		</section>
 		<section class="flex center">
-			<a th:href="@{'/notice-edit/' + ${detail.no}}"><button type="submit" class="add-btn" style="margin-right: 10px;"><span>수정</span></button></a>
+			<a th:href="@{'/notice-edit/' + ${detail.no}}"><button type="submit" class="add-btn"
+					style="margin-right: 10px;"><span>수정</span></button></a>
 			<form th:action="@{'/notice-detail/' + ${detail.no}}" method="post">
 				<input type="hidden" name="_method" value="delete">
 				<button type="submit" class="add-btn" style="margin-left: 10px;"><span>삭제</span></button>

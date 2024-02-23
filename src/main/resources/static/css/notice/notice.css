@@ -107,7 +107,9 @@ li .count{
 li .count img{
 	padding-right: 5px;
 }
-
+.cancel-line{
+	text-decoration: line-through;
+}
 
 
 /*notice-event.html*/

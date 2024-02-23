@@ -31,6 +31,7 @@ public class NoticeDTO extends DateEntity{
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	private EmployeeEntity employee;
+	private boolean status;
 	
 	public NoticeEntity toEntity(EmployeeEntity employeeEntity) {
 		return NoticeEntity.builder()
@@ -41,6 +42,7 @@ public class NoticeDTO extends DateEntity{
 		.employee(employeeEntity)
 		.end(end)
 		.content(content)
+		.status(status)
 		.build();
 	}
 }

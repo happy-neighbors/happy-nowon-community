@@ -19,7 +19,9 @@
 	<main class="view-size">
 		<section>
 			<div class="flex title">
-				<div style="font-size: 2rem; font-weight: bold;">공지사항</div>
+				<a href="/notice">
+					<div style="font-size: 2rem; font-weight: bold;">공지사항</div>
+				</a>
 				<form action="/notice/search" method="get">
 					<div class="search-area">
 						<input class="search" type="text" name="keyword" placeholder="검색어를 입력해주세요"></input>
@@ -41,6 +43,8 @@
 				<ul>
 					<li>
 						<a class="flex" th:href="@{'/notice-detail/' + ${k.no}}">
+							<span class="noticespan" th:text="${k.type} ? 이벤트 : 공지"
+								th:id="'notice_' + ${k.type}"></span>
 							<div class="listtitle" th:text="${k.title}" th:if="${k.end}"></div>
 							<div class="flex count">
 								<img src="/img/notice/eye.png">
