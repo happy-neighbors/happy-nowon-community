@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/common/board.css">
+<link rel="stylesheet" href="/css/common/add-board.css">
+<link rel="stylesheet" href="/css/note/note.css">
+</head>
+<body>
+	<main>
+		<h1>쪽지함</h1>
+		<section class="view-size flex between">
+			<div class="note-menu flex center">
+				<a href="/write-note"><button class="add-btn"><span>쪽지쓰기</span></button></a>
+				<a href="/take-note"><button class="add-btn"><span>받은쪽지</span></button></a>
+				<a href="/send-note"><button class="add-btn"><span>보낸쪽지</span></button></a>
+			</div>
+			<div class="note-right">
+				<div id="noteSend">
+					<p class="note-title">쪽지 쓰기</p>
+					<form class="note-wrap" action="/send-note" method="post">
+						<table>
+							<tr>
+								<th>
+									<p>받는사람</p>
+								</th>
+								<td>
+									<input type="text" name="reader" placeholder="받는사람의 이메일 또는 아이디를 입력해주세요">
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<p>제목</p>
+								</th>
+								<td>
+									<input type="text" name="title" placeholder="제목을 입력해주세요">
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<p>내용</p>
+								</th>
+								<td>
+									<textarea name="content" placeholder="내용을 입력해주세요"></textarea>
+								</td>
+							</tr>
+							<input type="hidden" name="writer" th:value="${#authentication.principal.username}">
+						</table>
+						<button class="add-btn"><span>보내기</span></button>
+					</form>
+				</div>
+			</div>
+		</section>
+	</main>
+</body>
+</html>

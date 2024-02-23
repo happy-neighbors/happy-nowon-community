@@ -50,10 +50,11 @@
 						<a href="/town">더보기+</a>
 					</div>
 					<div class="board-area">
-						<div class="flex between col-center board-box"><!--타임리프forEach돌릴것-->
-							<p class="board-title">제목</p>
-							<p class="board-date">2024.00.00</p>
-						</div>
+						<a th:href="@{/detail-town/{pk}(pk=${town.no})}" class="flex between col-center board-box" th:each="town:${top5}" th:limit="5"><!--타임리프forEach돌릴것-->
+							<p class="board-title" th:text="${town.title}">제목</p>
+							<p class="board-date" th:if="${town.updatedAt == null}" th:text="${#temporals.format(town.createdAt, 'yyyy.MM.dd')}"></p>
+							<p class="board-date" th:if="${town.updatedAt != null}" th:text="${#temporals.format(town.updatedAt, 'yyyy.MM.dd')}"></p>
+						</a>
 					</div>
 				</section>
 				<section class="exchange board-info">
@@ -62,10 +63,11 @@
 						<a href="/anabada">더보기+</a>
 					</div>
 					<div class="board-area">
-						<div class="flex between col-center board-box"><!--타임리프forEach돌릴것-->
-							<p class="board-title">제목</p>
-							<p class="board-date">2024.00.00</p>
-						</div>
+						<a th:href="@{/detail-anabada/{pk}(pk=${anaba.no})}" class="flex between col-center board-box" th:each="anaba:${top52}" th:limit="5"><!--타임리프forEach돌릴것-->
+							<p class="board-title" th:text="${anaba.title}">제목</p>
+							<p class="board-date" th:if="${anaba.updatedAt == null}" th:text="${#temporals.format(anaba.createdAt, 'yyyy.MM.dd')}"></p>
+							<p class="board-date" th:if="${anaba.updatedAt != null}" th:text="${#temporals.format(anaba.updatedAt, 'yyyy.MM.dd')}"></p>
+						</a>
 					</div>
 				</section>
 				<section class="notice board-info">

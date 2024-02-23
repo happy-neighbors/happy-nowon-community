@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/notice/notice.css">
+	<link rel="stylesheet" href="/css/common/board.css">
+	<style th:inline="text">
+		/* Thymeleaf를 통해 동적으로 CSS를 적용하는 예제 */
+		.highlighted {
+			background-color: #2EA652;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+
+<body>
+	<main class="view-size">
+		<section>
+			<div class="flex title">
+				<div style="font-size: 2rem; font-weight: bold;">공지사항</div>
+				<form action="/notice/search" method="get">
+					<div class="search-area">
+						<input class="search" type="text" name="keyword" placeholder="검색어를 입력해주세요"></input>
+						<button class="searchbtn"><img src="/img/notice/search.png"></button>
+					</div>
+				</form>
+			</div>
+		</section>
+		<section>
+			<div class="tabarea flex col-center" style="justify-content: space-between;">
+				<a class="first" href="/notice">전체</a>
+				<a class="tabcenter" href="/notice-notice">공지</a>
+				<span></span>
+				<a class="event" href="/notice-event">이벤트</a>
+			</div>
+		</section>
+		<section>
+			<div class="noticelist" th:each="k:${keyList}">
+				<ul>
+					<li>
+						<a class="flex" th:href="@{'/notice-detail/' + ${k.no}}">
+							<div class="listtitle" th:text="${k.title}" th:if="${k.end}"></div>
+							<div class="flex count">
+								<img src="/img/notice/eye.png">
+								<p th:text="${k.readCount}"></p>
+							</div>
+							<div th:text="${#temporals.format(k.start, 'yyyy.MM.dd')}"></div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</section>
+		<section class="add-area">
+			<a href="/add-notice"><button class="add-btn"><span>글쓰기</span></button></a>
+		</section>
+	</main>
+</body>
+
+</html>

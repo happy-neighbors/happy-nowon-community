@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/common/board.css">
+<link rel="stylesheet" href="/css/common/add-board.css">
+<link rel="stylesheet" href="/css/note/note.css">
+<style th:inline="text">
+    /* Thymeleaf를 통해 동적으로 CSS를 적용하는 예제 */
+    .highlighted {
+        background-color: #2EA652;
+        border-radius: 50%;
+    }
+</style>
+</head>
+<body>
+	<main>
+		<h1>쪽지함</h1>
+		<section class="view-size flex between">
+			<div class="note-menu flex center">
+				<a href="/write-note"><button class="add-btn"><span>쪽지쓰기</span></button></a>
+				<a href="/take-note"><button class="add-btn"><span>받은쪽지</span></button></a>
+				<a href="/send-note"><button class="add-btn"><span>보낸쪽지</span></button></a>
+			</div>
+			<div class="note-right">
+				<div id="take">
+					<p class="note-title">받은 쪽지함</p>
+					<div class="flex between note-wrap">
+						<p>제목</p>
+						<p>보낸사람</p>
+						<p>보낸시간</p>
+					</div>
+					<div class="flex between note-result-wrap" th:if="${send.reader == #authentication.principal.username}" th:each="send :${result.dtoList}">
+						<a th:href="@{/detail-note/{pk}(pk=${send.no})}" th:text="${send.title}"></a>
+						<p th:text="${send.writer}"></p>
+						<p th:text="${#temporals.format(send.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></p>
+					</div>
+				</div>
+				<ul class="page-list flex center">
+					<li class="page-item pageNum page-prev" th:if="${result.prev}">
+						<a class="page-link" th:href="@{/take-note(page=${result.start -1})}" tabindex="-1">
+				  	      <img src="/img/common/left.svg">
+				   	    </a>
+				   	    <span></span>
+					</li>
+					<th:block th:each="page:${result.pageList}">
+						<li>
+							<div class="pageNum" th:class="${#strings.equals(param.page, page) ? 'highlighted' : ''} + ${param.page == null && page == 1? 'highlighted' : ''}">
+					        	<a th:href="@{/take-note(page=${page})}">
+									<p th:text="${page}"></p>
+								</a> 
+							</div>
+						</li>
+						<span></span>
+					</th:block>
+					<l1 class="page-item pageNum page-next" th:if="${result.next}">
+						<a class="page-link" th:href="@{/take-note(page=${result.end+1})}">
+				        	<img src="/img/common/right.svg">
+				       	</a>
+					</l1>
+				</ul>
+			</div>
+		</section>
+	</main>
+</body>
+</html>

@@ -9,5 +9,7 @@ public interface TownEntityRepository extends JpaRepository<TownEntity, Long>{
 	List<TownEntity> findByEmployee(EmployeeEntity en);
 
 	List<TownEntity> findByEmployee_empNo(long empNo);
+
+	List<TownEntity> findTop5ByOrderByNoDesc();
 	
 }

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<link rel="stylesheet" href="/css/notice/notice-detail.css">
+	<script src="/js/notice/notice-detail.js"></script>
+	<link rel="stylesheet" href="/js/summernote/summernote-lite.css">
+	<script src="/js/summernote-jyj/summernote-ko-KR.js"></script>
+	<script src="/js/summernote-jyj/summernote-lite.js"></script>
+	<script src="/js/notice/notice-edit.js"></script>
+	<link rel="stylesheet" href="/css/common/board.css">
+</head>
+
+<body>
+	<main class="view-size" th:each="detail : ${DetailList}">
+		<form th:action="@{'/notice-detail/' + ${detail.no}}" method="POST">
+			<input type="hidden" name="_method" value="put">
+			<input type="hidden" name="no" th:value="${detail.no}">
+			<section>
+				<div class="title">
+					<div style="font-weight: bold; font-size: 2rem;">공지사항 수정</div>
+				</div>
+				<div class="flex">
+					<div
+						style="padding: 27px 46px 20px 0; border-bottom: 1px solid #eee; width: 800px; border-right: 1px solid #eee;">
+						<div class="flex noticetitle">
+							<div class="category">
+								<input type="radio" name="type" id="notice" value="0">
+								<label for="notice">공지</label>
+								<input type="radio" name="type" id="event" value="1">
+								<label for="event">이벤트</label>
+							</div>
+							<input type="text" style="margin-left: 20px;" th:value="${detail.title}" name="title" ></input><br>
+						</div>
+						<div th:text="${#temporals.format(detail.start, 'yyyy-MM-dd hh:mm')}"
+							style="font-size: 0.9rem;">날짜
+						</div>
+					</div>
+					<div class="writer">
+						<div style="justify-content: center;" class="flex">
+							작성자 :&nbsp;<span th:text="${detail.memNo}"></span>
+						</div>
+						<div class="flex" style="justify-content: center; font-size: 0.9rem;">
+							공지 종료일 :&nbsp;<input type="datetime-local" th:value="${detail.end}" name="end"></input>
+						</div>
+					</div>
+				</div>
+			</section>
+			<section>
+				<textarea id="summernote" name="content">[[${detail.content}]]</textarea>
+				<div class="last"></div>
+			</section>
+			<section class="buttonarea flex">
+				<button type="submit" class="add-btn" style="margin-right: 10px;"><span>수정완료</span></button>
+				<a href="/notice"><button type="submit" class="add-btn" style="margin-left: 10px;"><span>취소</span></button></a>
+			</section>
+		</form>
+	</main>
+</body>
+
+</html>

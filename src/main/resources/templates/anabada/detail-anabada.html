@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{common/layout :: commonLayout(~{this::head}, ~{this::main})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/css/common/board.css">
+<link rel="stylesheet" href="/css/town/detail-town.css">
+<script src="/js/summernote/summernote-lite.js"></script>
+<script src="/js/summernote/summernote-ko-KR.js"></script>
+<script src="/js/summernote/my-summernote.js"></script>
+<link rel="stylesheet" href="/js/summernote/summernote-lite.css">
+</head>
+<body>
+	<main class="view-size">
+		<section class="original">
+			<p class="town-title" th:text="${dto.title}"></p>
+			<div class="line"></div>
+			<div class="flex town-info town-info-title">
+				<p>주최자</p>
+				<p>구역</p>
+				<p>연락처</p>
+				<p>상태</p>
+			</div>
+			<div class="flex col-center between">
+				<div class="flex town-info town-info-content">
+					<p th:text="${dto.writer}"></p>
+					<p th:text="${dto.area}"></p>
+					<p th:text="${dto.phone}"></p>
+					<p th:text="${dto.state}"></p>
+				</div>
+				<div class="flex town-btn">
+					<td class="flex center">
+						<button class="add-btn board-btn" type="button" onclick="update()"><span>수정</span></button>
+					</td>
+					<form th:action="|/detail-anabada/${dto.no}|" method="POST">
+						<input type="hidden" name="_method" value="delete" />
+						<button class="add-btn board-btn"><span>삭제</span></button>	
+					</form>
+				</div>
+			</div>
+			<div class="town-date flex between">
+				<div class="flex">
+					<p class="town-date-title">게시글등록 : </p>
+					<p class="town-date-info" th:text="${#temporals.format(dto.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></p>
+					<p class="town-date-title">최종수정 : </p>
+					<p class="town-date-info" th:if="${dto.updatedAt == null}" th:text="${#temporals.format(dto.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></p>
+					<p class="town-date-info" th:if="${dto.updatedAt != null}" th:text="${#temporals.format(dto.updatedAt, 'yyyy-MM-dd HH:mm:ss')}"></p>
+				</div>
+				<div class="flex read-count">
+					<p>조회수</p>
+					<p th:text="${dto.readCount}"></p>
+				</div>
+			</div>
+			<div class="line2"></div>
+			<div class="default" th:utext="${dto.content}"></div>
+			<div class="line2"></div>
+			<div class="go-list">
+				<a href="/write-note"><button class="add-btn"><span>쪽지보내기</span></button></a>
+				<a href="/anabada"><button class="add-btn"><span>목록으로</span></button></a>
+			</div>
+		</section>
+		<form class="update" th:action="|/detail-anabada/${dto.no}|" method="post">
+			<div class="flex center col-center update-title">
+				<p>제목 : </p>
+				<input class="town-title" type="text" name="title" th:value="${dto.title}">
+			</div>
+			<div class="flex town-info town-info-title">
+				<p>주최자</p>
+				<p>구역</p>
+				<p>연락처</p>
+				<p>상태</p>
+			</div>
+			<div class="flex col-center between">
+				<div class="flex town-info town-info-content">
+					<p th:text="${dto.writer}"></p>
+					<input name="area" th:value="${dto.area}">
+					<p th:text="${dto.phone}"></p>
+					<select name="state">
+						<option value="진행중">진행중</option>
+						<option value="대기중">대기중</option>
+						<option value="종료">종료</option>
+					</select>
+				</div>
+				<div class="flex town-btn">
+					<td class="flex center">
+						<button class="add-btn board-btn" type="button" onclick="cancel()"><span>취소</span></button>
+						<span class="span-margin"></span>
+						<input type="hidden" name="no" th:value="${dto.no}">
+						<input type="hidden" name="_method" value="put">
+						<button class="add-btn board-btn" type="submit"><span>수정완료</span></button>
+					</td>
+				</div>
+			</div>
+			<div class="town-date flex between">
+				<div class="flex">
+					<p class="town-date-title">게시글등록 : </p>
+					<p class="town-date-info" th:text="${#temporals.format(dto.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></p>
+					<p class="town-date-title">최종수정 : </p>
+					<p class="town-date-info" th:if="${dto.updatedAt == null}" th:text="${#temporals.format(dto.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></p>
+					<p class="town-date-info" th:if="${dto.updatedAt != null}" th:text="${#temporals.format(dto.updatedAt, 'yyyy-MM-dd HH:mm:ss')}"></p>
+				</div>
+				<div class="flex read-count">
+					<p>조회수</p>
+					<p th:text="${dto.readCount}"></p>
+				</div>
+			</div>
+			<div class="line"></div>
+			<textarea id="summernote" name="content" th:utext="${dto.content}"></textarea>
+		</form>
+		
+		<script>
+		/**
+		*이미지 파일 업로드
+		*/
+			function uploadSummernoteImageFile(file, editor) {
+				
+				var formData = new FormData();
+				formData.append("goodsImg", file);
+				console.log("uploadSummernoteImageFile실행")
+				$.ajax({
+					data: formData,
+					type: "POST",
+					url: "/files-temp-upload",
+					contentType: false,
+					processData: false,
+					success: function (result) {
+						//항상 업로드된 파일의 url이 있어야 한다.
+						$(editor).summernote('insertImage', result.url);
+						
+						var tempkey = $("<input type='hidden' name='tempKey'>").val(result.bucketKey);
+						var orgname = $("<input type='hidden' name='orgName'>").val(result.orgName);
+						$(editor).after(tempkey, orgname);    
+					}
+				});
+			}
+			function update(){
+				//document.getElementById('detail-view').style.display='none';
+				const element = document.querySelector(".original");
+				element.style.display="none";
+				const updateView = document.querySelector(".update");
+				updateView.style.display="block";
+			}
+			function cancel(){
+				const element = document.querySelector(".original");
+				element.style.display="block";
+				const updateView = document.querySelector(".update");
+				updateView.style.display="none";
+			}
+		</script>
+	</main>
+</body>
+</html>

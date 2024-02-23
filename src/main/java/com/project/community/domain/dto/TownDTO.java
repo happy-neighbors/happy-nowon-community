@@ -31,14 +31,15 @@ public class TownDTO {
 	private LocalDateTime createdAt;
 	private LocalDateTime updatedAt;
 	
-	public TownEntity toEntity(long l) {
+	public TownEntity toEntity(EmployeeEntity employeeEntity) {
 		return TownEntity.builder()
-				.no(l)
+				.no(no)
 				.title(title)
 				.leader(leader)
 				.phone(phone)
 				.area(area)
 				.content(content)
+				.employee(employeeEntity)
 				.build();
 	}
 

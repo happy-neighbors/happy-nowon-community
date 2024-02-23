@@ -51,5 +51,11 @@ public class TownEntity extends DateEntity {
 				.updatedAt(getUpdatedAt())
 				.build();
 	}
+	public TownEntity update(String area, String content, String title) {
+		this.area=area;
+		this.content=content;
+		this.title=title;
+		return this;
+	}
 
 }
