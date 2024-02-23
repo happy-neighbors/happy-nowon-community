@@ -1,5 +1,8 @@
 package com.project.community.domain.dto;
 
+import java.math.BigInteger;
+import java.util.Date;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.project.community.domain.entity.EmployeeEntity;
@@ -16,6 +19,8 @@ public class EmployeeDTO {
 	private String empPassword;
 	private String empName;
 	private String empRole;
+	private String empPhone;
+	private String empBirth;
 	
 	
 	public EmployeeEntity toEmployeeEntity(PasswordEncoder passwordEncoder) {
@@ -24,6 +29,8 @@ public class EmployeeDTO {
 				.empPassword(passwordEncoder.encode(empPassword))
 				.empName(empName)
 				.empRole(empRole)
+				.empBirth(empBirth)
+				.empPhone(empPhone)
 				.build();
 	}
 }

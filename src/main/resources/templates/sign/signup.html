@@ -4,7 +4,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" href="/css/common/reset.css">
 	<link rel="stylesheet" href="/css/sign/signup.css">
 
 
@@ -15,7 +14,7 @@
 	<main>
 		<form action="/sign/signup" method="post">
 		<div class="container">
-			<span class="title">회원가입 페이지</span>
+			<span class="title">회원가입</span>
 				<div class="wrapper">
 					<label for="id">아이디:</label>
 					<input type="text" id="empUsername" name="empUsername" required>
@@ -33,14 +32,14 @@
 
 				<div class="wrapper">
 					<label for="name">생년월일:</label>
-					<input type="text" id="birth" name="birth" required>
+					<input type="text" id="empBirth" name="empBirth" required>
 
 				</div>
 
 
 				<div class="wrapper">
 					<label for="phone">전화번호:</label>
-					<input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required> <small>예시:
+					<input type="tel" id="empPhone" name="empPhone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required> <small>예시:
 						010-1234-5678</small>
 					<input type="hidden" name="empRole" value="USER">
 				</div>

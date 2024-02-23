@@ -4,7 +4,6 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Insert title here</title>
-	<link rel="stylesheet" href="/css/common/reset.css">
 	<link rel="stylesheet" href="/css/sign/mypage.css">
 
 </head>
@@ -14,11 +13,8 @@
 		<div class="container">
 			<div class="left">
 				<div class="left_1">
-					<div class="ment"><span th:text="%{empUsername.name}+님 환영합니다"> 환영합니다.</span></div>
+					<div class="ment"><span th:text="${empUsername + '님 환영합니다'}"> </span></div>
 					<div><img class="film" src="/img/sign/person.svg"></div>
-					<a href="#">
-						<div class="modify">프로필 수정</div>
-					</a>
 				</div>
 				<div class="left_2">
 					<ul>
@@ -50,8 +46,8 @@
 				<div class="profile">
 					<p>프로필 정보</p>
 					<ul class="lists">
-						<li><img src="/img/sign/profile.svg"><span>@@@</span> </li>
-						<li><img src="/img/sign/smartphone.svg"><span>010-@@@-@@@@</span></li>
+						<li><img src="/img/sign/profile.svg"><span th:text="${empName}">@@@</span> </li>
+						<li><img src="/img/sign/smartphone.svg"><span th:text="${empPhone}">010-@@@-@@@@</span></li>
 						<li><img src="/img/sign/birth.svg"><span>입력한 생일</span></li>
 					</ul>
 				</div>
