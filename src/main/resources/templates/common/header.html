@@ -30,7 +30,7 @@
 					</th:block>
 				</div>
 				<th:block sec:authorize="isAuthenticated()">
-					<a href="/take-note" class="note">쪽지함()</a>
+					<a href="/take-note" class="note"><span>쪽지함(</span><span th:text="${count}" class="new-note"></span><span>)</span></a>
 				</th:block>
 			</div>
 		</section>

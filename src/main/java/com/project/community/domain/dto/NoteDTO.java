@@ -34,6 +34,7 @@ public class NoteDTO {
 				.content(content)
 				.writer(writer)
 				.reader(reader)
+				.state(state)
 				.build();
 	}
 

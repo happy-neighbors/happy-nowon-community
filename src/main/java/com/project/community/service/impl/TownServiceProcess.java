@@ -17,8 +17,10 @@ import org.springframework.ui.Model;
 
 import com.project.community.domain.dto.PageRequestDTO;
 import com.project.community.domain.dto.PageResultDTO;
+import com.project.community.domain.dto.TownCommentDTO;
 import com.project.community.domain.dto.TownDTO;
 import com.project.community.domain.entity.EmployeeEntityRepository;
+import com.project.community.domain.entity.TownCommentEntityRepository;
 import com.project.community.domain.entity.TownEntity;
 import com.project.community.domain.entity.TownEntityRepository;
 import com.project.community.security.EmployeeDetails;
@@ -35,6 +37,8 @@ public class TownServiceProcess implements TownService{
 	TownEntityRepository townRepo;
 	@Autowired
 	EmployeeEntityRepository empRepo;
+	@Autowired
+	TownCommentEntityRepository commentRepo;
 	
 	
 	
@@ -109,6 +113,8 @@ public class TownServiceProcess implements TownService{
 		
 		
 	}
+
+	
 
 	
 	

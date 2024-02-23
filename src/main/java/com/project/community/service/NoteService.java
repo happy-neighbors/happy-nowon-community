@@ -21,5 +21,7 @@ public interface NoteService {
 	NoteEntity getState(long pk);
 
 	void detailNote(long pk, Model model);
+	
+	Long countState();
 
 }

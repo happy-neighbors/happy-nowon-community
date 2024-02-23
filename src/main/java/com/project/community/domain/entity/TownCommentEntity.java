@@ -30,18 +30,21 @@ public class TownCommentEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long no;
+	private String writer;
 	private String content;
 	private LocalDateTime createdAt;
 	@ManyToOne
 	@JoinColumn(name = "townEntity_no", nullable = false)
     private TownEntity townNo;
 	
-	public TownCommentDTOBuilder toTownCommentDTO() {
+	public TownCommentDTO toTownCommentDTO() {
 		return TownCommentDTO.builder()
 				.no(no)
+				.writer(writer)
 				.content(content)
 				.createdAt(createdAt)
-				.townNo(townNo);
+				.townNo(townNo)
+				.build();
 	}
 	
 }

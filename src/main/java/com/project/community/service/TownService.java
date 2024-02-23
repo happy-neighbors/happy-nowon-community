@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 
 import com.project.community.domain.dto.PageRequestDTO;
 import com.project.community.domain.dto.PageResultDTO;
+import com.project.community.domain.dto.TownCommentDTO;
 import com.project.community.domain.dto.TownDTO;
 import com.project.community.domain.entity.TownEntity;
 
@@ -27,5 +28,6 @@ public interface TownService {
 	List<TownEntity> getTop5Procedures();
 
 	TownEntity getCount(long pk);
+
 	
 }
