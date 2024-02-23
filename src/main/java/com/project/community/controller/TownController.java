@@ -16,10 +16,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.community.domain.dto.PageRequestDTO;
+import com.project.community.domain.dto.TownCommentDTO;
 import com.project.community.domain.dto.TownDTO;
+import com.project.community.service.NoteService;
 import com.project.community.service.TownService;
 import com.project.community.utils.FileUploadUtil;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -30,6 +33,8 @@ public class TownController {
 	
 	@Autowired
 	private final TownService townService;
+	@Autowired
+	private final NoteService noteService;
 	
 	private final FileUploadUtil fileUtil3;
 	
@@ -37,10 +42,14 @@ public class TownController {
 	public String town(PageRequestDTO pageRequestDTO,Model model) {
 		model.addAttribute("result", townService.getList(pageRequestDTO));
 		townService.townList(model);
+		Long count = noteService.countState();
+		model.addAttribute("count", count);
 		return "town/town";
 	}
 	@GetMapping("/add-town")
-	public String addTown() {
+	public String addTown(Model model) {
+		Long count = noteService.countState();
+		model.addAttribute("count", count);
 		return "town/add-town";
 	}
 	@ResponseBody
@@ -58,6 +67,8 @@ public class TownController {
 	public String detailTown(@PathVariable(name = "pk") long pk, Model model) {
 		townService.detailTown(pk, model);
 		townService.getCount(pk);
+		Long count = noteService.countState();
+		model.addAttribute("count", count);
 		return "town/detail-town";
 	}
 	@DeleteMapping("/detail-town/{pk}")
@@ -70,7 +81,6 @@ public class TownController {
 		townService.updateTown(pk, area, content, title);
 		return "redirect:/detail-town/{pk}";
 	}
-	
 	
 
 }

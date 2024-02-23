@@ -22,17 +22,19 @@ import lombok.ToString;
 public class TownCommentDTO {
 
 	private long no;
+	private String writer;
 	private String content;
 	private LocalDateTime createdAt;
     private TownEntity townNo;
     
-    public TownCommentEntityBuilder toEntity(TownEntity townEntity) {
+    public TownCommentEntity toEntity(TownEntity townEntity) {
     	return TownCommentEntity.builder()
     			.no(no)
+    			.writer(writer)
     			.content(content)
     			.createdAt(createdAt)
     			.townNo(townEntity)
-    			;
+    			.build();
     }
 	
 }

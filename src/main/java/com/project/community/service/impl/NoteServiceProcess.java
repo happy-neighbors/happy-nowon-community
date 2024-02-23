@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -89,6 +90,13 @@ public class NoteServiceProcess implements NoteService{
 				.map(NoteEntity::toNoteDTO)
 				.orElseThrow());
 		
+	}
+
+	@Override
+	public Long countState() {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String username = authentication.getName();
+		return noteRepo.countState(username);
 	}
 
 }

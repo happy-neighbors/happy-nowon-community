@@ -18,6 +18,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.project.community.domain.dto.AnabadaDTO;
 import com.project.community.domain.dto.PageRequestDTO;
 import com.project.community.service.AnabadaService;
+import com.project.community.service.NoteService;
 import com.project.community.utils.FileUploadUtil;
 
 import lombok.RequiredArgsConstructor;
@@ -28,6 +29,8 @@ public class AnabadaController {
 	
 	@Autowired
 	private final AnabadaService anabadaService;
+	@Autowired
+	private NoteService noteService;
 	
 	private final FileUploadUtil fileUtil3;
 	
@@ -35,10 +38,14 @@ public class AnabadaController {
 	public String anabada(PageRequestDTO pageRequestDTO,Model model) {
 		model.addAttribute("result", anabadaService.getList(pageRequestDTO));
 		anabadaService.anabadaList(model);
+		Long count = noteService.countState();
+		model.addAttribute("count", count);
 		return "anabada/anabada";
 	}
 	@GetMapping("/add-anabada")
-	public String addAnabada() {
+	public String addAnabada(Model model) {
+		Long count = noteService.countState();
+		model.addAttribute("count", count);
 		return "anabada/add-anabada";
 	}
 	@ResponseBody
@@ -56,6 +63,8 @@ public class AnabadaController {
 	public String detailTown(@PathVariable(name = "pk") long pk, Model model) {
 		anabadaService.detailAnabada(pk, model);
 		anabadaService.getCount(pk);
+		Long count = noteService.countState();
+		model.addAttribute("count", count);
 		return "anabada/detail-anabada";
 	}
 	@DeleteMapping("/detail-anabada/{pk}")

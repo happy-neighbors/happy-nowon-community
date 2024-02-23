@@ -27,7 +27,7 @@ public class IndexController {
 	@Autowired
 	private AnabadaService AnabadaService;
 	@Autowired
-	private final NoteService noteService;
+	private NoteService noteService;
 	
 	@GetMapping("/")
 	public String index(Model model) {
@@ -36,6 +36,8 @@ public class IndexController {
 		List<AnabadaEntity> top52 = AnabadaService.getTop5Procedures();
 		model.addAttribute("top52", top52);
 		noteService.takeNoteList(model);
+		Long count = noteService.countState();
+		model.addAttribute("count", count);
 		return "index";
 	}
 
