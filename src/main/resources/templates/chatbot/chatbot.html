@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<aside id="chatbot">
+		
+		<!--챗봇 활성화 버튼-->
+		<section id="chatbot-button-wrap" class="flex center-1 center-2">
+			<button id="chatbot-button" class="chatbot-button" onclick="toggleChatbotButton()">
+				<img src="/img/chatbot/chatbot-bot.png" id="chatbot-button-img" alt="chatbot-button">
+			</button>
+		</section>
+		
+		<!--챗봇 콘텐츠-->
+		<section id="chatbot-body-wrap" class="none">
+		
+			<!--챗봇 헤드-->
+			<div id="chatbot-head-wrap" class="flex center-1 center-2">
+				<img src="/img/chatbot/chatbot-title.png" id="chatbot-title" alt="chatbot-title">
+			</div>
+			
+			<!--대화 내용-->
+			<div id="chatbot-content-wrap">
+				<div id="chatbot-content">
+					
+				</div>
+			</div>
+			
+			<!--검색-->
+			<div id="chatbot-search-wrap" class="flex center-1 center-2">
+				<input type="text" id="chatbot-keyword" placeholder="메시지를 입력해주세요." onkeyup="checkEnterKey(event)">
+				<div class="chatbot-send-wrap flex center-1 center-2">
+					<img src="/img/chatbot/chatbot-send.png" id="chatbot-send">
+				</div>
+			</div>
+		</section>
+	</aside>
+</html>
