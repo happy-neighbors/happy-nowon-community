@@ -1,0 +1,45 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	border: none;
+	padding: 0;
+	outline: none;
+}
+
+button {
+	background: transparent;
+}
+
+img {
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.flex {
+	display: flex;
+}
+
+.center-1 {
+	justify-content: center;
+}
+
+.center-2 {
+	align-items: center;
+}
+
+.space-between {
+	justify-content: space-between;
+}
+
+.space-evenly {
+	justify-content: space-evenly;
+}
+
+.start {
+	justify-content: start;
+}
+
+.end {
+	justify-content: end;
+}

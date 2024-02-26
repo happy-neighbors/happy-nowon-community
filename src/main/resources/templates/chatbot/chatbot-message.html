@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+	<!--챗봇 연결 시 날짜 표시-->
+	<div id="chatbot-date" class="flex center-1" th:if="${message.today}" th:text="${message.today}">오늘 날짜</div>
+	
+	<!--챗봇 메시지-->
+	<div id="chatbot-message-wrap" class="message-wrap flex">
+		
+		
+		<div id="chatbot-profile-wrap" class="flex center-1 center-2">
+			<img src="/img/chatbot/chatbot-bot-profile.png" id="chatbot-bot-profile">
+		</div>
+		
+		<!--챗봇 메시지 방향 표시-->
+		<div id="message-direction-chatbot" class="message-direction"></div>
+		
+		<div id="chatbot-message">
+			
+			<div id="chatbot-message-box" class="message-box">
+				<span th:text="${message.responseDTO.content}"></span>
+			</div>
+			
+			<div id="movie-message-box">
+			
+			</div>
+			
+			<!--챗봇 메시지 작성 시간-->
+			<div class="chatbot-time">
+				<span th:text="${message.time}">메시지 작성 시간</span>
+			</div>
+		</div>
+	</div>
+</html>
