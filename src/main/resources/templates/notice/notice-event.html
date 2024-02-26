@@ -41,7 +41,12 @@
 						<a class="flex" th:href="@{'/notice-detail/' + ${notice.no}}">
 							<span class="noticespan" th:text="${notice.type} ? 이벤트 : 공지"
 								th:id="'notice_' + ${notice.type}">공지</span>
-							<div class="listtitle" th:text="${notice.title}">공지입니다</div>
+							<th:block th:if="${notice.end} lt ${#temporals.createNow()}">
+								<p class="listtitle cancel-line" th:text="${notice.title}" th:if="${notice.end}"></p>
+							</th:block>
+							<th:block th:if="${notice.end} gt ${#temporals.createNow()}">
+							    <p class="listtitle" th:text="${notice.title}" th:if="${notice.end}"></p>
+							</th:block>
 							<div class="flex count">
 								<img src="/img/notice/eye.png">
 								<p th:text="${notice.readCount}">123</p>
