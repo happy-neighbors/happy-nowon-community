@@ -17,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import com.project.community.domain.dto.NoticeDTO;
 import com.project.community.domain.dto.PageRequestDTO;
 import com.project.community.domain.entity.NoticeEntityRepository;
+import com.project.community.service.NoteService;
 import com.project.community.service.NoticeService;
 
 @Controller
@@ -26,11 +27,15 @@ public class NoticeController {
 	NoticeService nService;
 	@Autowired
 	NoticeEntityRepository noticeRepo;
+	@Autowired
+	private NoteService noteService;
 
 	@GetMapping("/notice")
 	public String notice(Model model, PageRequestDTO prDTO) {
 		model.addAttribute("page", nService.getlist(prDTO));
 		nService.noticeList(model);
+		Long count = noteService.countState();
+		model.addAttribute("count", count);
 		return "notice/notice";
 	}
 
@@ -38,6 +43,8 @@ public class NoticeController {
 	public String search(@RequestParam(value="keyword")String keyword, Model model) {
 		List<NoticeDTO> nDTO = nService.search(keyword);
 		model.addAttribute("keyList", nDTO);
+		Long count = noteService.countState();
+		model.addAttribute("count", count);
 		return "notice/notice-search";
 	}
 	
@@ -45,6 +52,8 @@ public class NoticeController {
 	public String noticeEvent(Model model, PageRequestDTO prDTO) {
 		model.addAttribute("page", nService.getlist(prDTO));
 		nService.noticeList(model);
+		Long count = noteService.countState();
+		model.addAttribute("count", count);
 		return "notice/notice-event";
 	}
 
@@ -52,11 +61,15 @@ public class NoticeController {
 	public String noticeNotice(Model model, PageRequestDTO prDTO) {
 		model.addAttribute("page", nService.getlist(prDTO));
 		nService.noticeList(model);
+		Long count = noteService.countState();
+		model.addAttribute("count", count);
 		return "notice/notice-notice";
 	}
 
 	@GetMapping("/add-notice")
-	public String noticeAdd() {
+	public String noticeAdd(Model model) {
+		Long count = noteService.countState();
+		model.addAttribute("count", count);
 		return "notice/add-notice";
 	}
 
@@ -70,12 +83,16 @@ public class NoticeController {
 	public String noticeDetail(@PathVariable("no") long no, Model model) {
 		nService.noticeDetail(no, model);
 		nService.getNotice(no);
+		Long count = noteService.countState();
+		model.addAttribute("count", count);
 		return "notice/notice-detail";
 	}
 
 	@GetMapping("/notice-edit/{no}")
 	public String noticeEditPage(@PathVariable("no") long no, Model model) {
 		nService.noticeDetail(no, model);
+		Long count = noteService.countState();
+		model.addAttribute("count", count);
 		return "notice/notice-edit";
 	}
 
