@@ -83,6 +83,7 @@ function disconnectChatbot() {
 
 //챗봇 메시지 표시
 function showChatbotMessage(message) {
+	console.log("Message: " + message);
 	chatbotContent.insertAdjacentHTML('beforeend', message);
 	
 	chatbotContent.scrollTop = chatbotContent.scrollHeight;
@@ -108,7 +109,7 @@ function showUserMessage(keyword) {
 }
 
 //입력값 전송 버튼
-async function sendChatbotButton() {
+function sendChatbotButton() {
 	let keyword = chatbotKeyword.value.trim();
 	
 	if (keyword.length < 2) {
@@ -123,19 +124,17 @@ async function sendChatbotButton() {
 	
 	switch (keyword) {
 		case "일간 박스오피스":
-			await showDailyBoxOffice();
+			dailyBoxOffice();
 			
 			showUserMessage(keyword);
-			showChatbotMessage(dailyBoxOfficeResult.innerHTML);
 			
 			chatbotKeyword.value = "";
 			
 			return;
 		case "주간 박스오피스":
-			await showWeeklyBoxOffice();
+			weeklyBoxOffice();
 			
 			showUserMessage(keyword);
-			showChatbotMessage(weeklyBoxOfficeResult.innerHTML);
 			
 			chatbotKeyword.value = "";
 			
@@ -179,16 +178,10 @@ function formatMinutes(minutes) {
 
 /*Movie API*/
 
-//영화 ID
-let dailyBoxOfficeResult;
-let weeklyBoxOfficeResult;
-let movieDetailResult;
-let lastSundayResult;
-
 let movieKey = "c413e5112acb82c71d8de6f54d92d909";
 
 //일간 박스오피스
-async function showDailyBoxOffice() {
+function dailyBoxOffice() {
 	let url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?";
 	
 	let previousDay = new Date();
@@ -197,32 +190,27 @@ async function showDailyBoxOffice() {
 	let targetDt = previousDay.getFullYear() +
 		((previousDay.getMonth() + 1) > 9 ? (previousDay.getMonth() + 1).toString() : + "0" + (previousDay.getMonth() + 1).toString()) +
 		(previousDay.getDate() > 9 ? previousDay.getDate().toString() : "0" + previousDay.getDate().toString());
-		
-		
-	await $.ajax({
+	
+	
+	$.ajax({
 		method: "GET",
 		url: url + "key=" + movieKey + "&targetDt=" + targetDt,
 		data: {
 			itemPerPage: "10"
 		}
 	}).done(function(message) {
-		let result = "";
-		
 		for (let i = 0; i < 10; i++) {
 			let shortUrl = message.boxOfficeResult.dailyBoxOfficeList[i];
 			
-			result += "<p>영화 코드: " + shortUrl.movieCd + "</p>";
-			result += "<p>영화 제목: " + shortUrl.movieNm + "</p>";
-			result += "<p>관객 수: " + shortUrl.audiCnt + "</p>";
-			result += "<p>개봉일: " + shortUrl.openDt + "</p><hr><br>";
+			let boxOfficeData = createBoxOfiiceMessageBox(shortUrl);
+			
+			showChatbotMessage(boxOfficeData);
 		}
-		
-		dailyBoxOfficeResult.innerHTML += result;
 	}); 
 }
 
 //주간 박스오피스
-async function showWeeklyBoxOffice() {
+function weeklyBoxOffice() {
 	let url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchWeeklyBoxOfficeList.json?";
 	
 	let previousDay = new Date();
@@ -234,30 +222,25 @@ async function showWeeklyBoxOffice() {
 		
 	let weekGb = "0";
 		
-	await $.ajax({
+	$.ajax({
 		method: "GET",
 		url: url + "key=" + movieKey + "&targetDt=" + targetDt + "&weekGb=" + weekGb,
 		data: {
 			itemPerPage: "10"
 		}
 	}).done(function(message) {
-		let result = "";
-		
 		for (let i = 0; i < 10; i++) {
 			let shortUrl = message.boxOfficeResult.weeklyBoxOfficeList[i];
 			
-			result += "<p>영화 코드: " + shortUrl.movieCd + "</p>";
-			result += "<p>영화 제목: " + shortUrl.movieNm + "</p>";
-			result += "<p>관객 수: " + shortUrl.audiCnt + "</p>";
-			result += "<p>개봉일: " + shortUrl.openDt + "</p><hr><br>";
+			let boxOfficeData = createBoxOfiiceMessageBox(shortUrl);
+			
+			showChatbotMessage(boxOfficeData);
 		}
-		
-		weeklyBoxOfficeResult.innerHTML += result;
 	}); 
 }
 
 //영화 상세정보
-function movieDetailBtn() {
+function movieDetail() {
 	let url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?";
 	
 	let movieCd = document.getElementById("movie-code").value;
@@ -266,13 +249,13 @@ function movieDetailBtn() {
 		method: "GET",
 		url: url + "key=" + movieKey + "&movieCd=" + movieCd,
 	}).done(function(message) {
-		let result = "";
 		let shortUrl = message.movieInfoResult.movieInfo;
-		let acts = shortUrl.actors;
-		let gnrs = shortUrl.genres;
-		let drts = shortUrl.directors;
 		
-		result += "<p>영화 제목: " + shortUrl.movieNm + "</p>";
+		let movieDetailData = createMovieDetailMessageBox(shortUrl);
+		
+		showChatbotMessage(movieDetailData);
+		
+		/*result += "<p>영화 제목: " + shortUrl.movieNm + "</p>";
 		
 		result += "<p>장르: "
 		for (let i = 0; i < gnrs.length; i++) {
@@ -298,8 +281,31 @@ function movieDetailBtn() {
 		result += "<p>상영 시간: " + shortUrl.showTm + "분</p>";
 		result += "<p>개봉일: " + shortUrl.openDt + "</p>";
 		
-		movieDetailResult.innerHTML += result;
+		movieDetailResult.innerHTML += result;*/
 	});
+}
+
+function createBoxOfiiceMessageBox(shortUrl) {
+	return `
+		<div id="movie-message-wrap" class="message-wrap flex">
+			<div id="movie-message">
+				<div id="movie-message-box" class="movie-message-box">
+					<p>${shortUrl.rank}위</p>
+					<button onclick="movieDetail()">제목: ${shortUrl.movieNm}</button>
+					<input type="hidden" id="movie-code" value="${shortUrl.movieCd}"></input>
+					<p>개봉일: ${shortUrl.openDt}</p>
+					<p>관객 수: ${shortUrl.audiAcc}</p>
+				</div>
+				<div class="chatbot-time">
+					<span></span>
+				</div>
+			</div>
+		</div>
+	`;
+}
+
+function createMovieDetailMessageBox(shortUrl) {
+	
 }
 
 //문서 전체 읽은 후 스크립트 실행을 위한 이벤트 리스너
@@ -308,9 +314,4 @@ document.addEventListener("DOMContentLoaded", function() {
 	chatbotBody = document.getElementById("chatbot-body-wrap");
 	chatbotContent = document.getElementById("chatbot-content");
 	chatbotKeyword = document.getElementById("chatbot-keyword");
-	
-	dailyBoxOfficeResult = document.getElementById("dailyBoxOffice-result");
-	weeklyBoxOfficeResult = document.getElementById("weeklyBoxOffice-result");
-	movieDetailResult = document.getElementById("movie-detail-result");
-	lastSundayResult = document.getElementById("lastSunday-result");
 });
