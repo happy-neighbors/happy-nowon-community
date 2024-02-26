@@ -27,9 +27,10 @@ public class DateEntity {
 		this.createdAt = LocalDateTime.now();
 	}
 	
-	@PreUpdate
 	public void preUpdate() {
-		this.updatedAt = LocalDateTime.now();
+	    if (this.readCount == 0) {
+	        this.updatedAt = LocalDateTime.now();
+	    }
 	}
 
 }
