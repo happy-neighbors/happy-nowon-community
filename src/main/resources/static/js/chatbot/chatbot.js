@@ -83,7 +83,6 @@ function disconnectChatbot() {
 
 //챗봇 메시지 표시
 function showChatbotMessage(message) {
-	console.log("Message: " + message);
 	chatbotContent.insertAdjacentHTML('beforeend', message);
 	
 	chatbotContent.scrollTop = chatbotContent.scrollHeight;
@@ -139,6 +138,11 @@ function sendChatbotButton() {
 			chatbotKeyword.value = "";
 			
 			return;
+		case "영화 상세정보":
+			let movieCode = document.querySelectorAll(".movie-code").value;
+			console.log("movieCode: " + movieCode);
+			
+			//movieDetail();
 		default:
 			break;
 	}
@@ -251,9 +255,7 @@ function movieDetail() {
 	}).done(function(message) {
 		let shortUrl = message.movieInfoResult.movieInfo;
 		
-		let movieDetailData = createMovieDetailMessageBox(shortUrl);
-		
-		showChatbotMessage(movieDetailData);
+		let movieDetailData = "";
 		
 		/*result += "<p>영화 제목: " + shortUrl.movieNm + "</p>";
 		
@@ -282,6 +284,8 @@ function movieDetail() {
 		result += "<p>개봉일: " + shortUrl.openDt + "</p>";
 		
 		movieDetailResult.innerHTML += result;*/
+		
+		showChatbotMessage(movieDetailData);
 	});
 }
 
@@ -291,8 +295,9 @@ function createBoxOfiiceMessageBox(shortUrl) {
 			<div id="movie-message">
 				<div id="movie-message-box" class="movie-message-box">
 					<p>${shortUrl.rank}위</p>
-					<button onclick="movieDetail()">제목: ${shortUrl.movieNm}</button>
-					<input type="hidden" id="movie-code" value="${shortUrl.movieCd}"></input>
+					<p>영화 코드:${shortUrl.movieCd}</p>
+					<button onclick="insertMovieDetail()">제목: ${shortUrl.movieNm}</button>
+					<input type="hidden" class="movie-code" value="${shortUrl.movieCd}"></input>
 					<p>개봉일: ${shortUrl.openDt}</p>
 					<p>관객 수: ${shortUrl.audiAcc}</p>
 				</div>
@@ -304,8 +309,28 @@ function createBoxOfiiceMessageBox(shortUrl) {
 	`;
 }
 
-function createMovieDetailMessageBox(shortUrl) {
+function insertDailyBoxOffice() {
+	let insertValue = "일간 박스오피스";
 	
+	chatbotKeyword.value = insertValue;
+	
+	sendChatbotButton()
+}
+
+function insertWeeklyBoxOffice() {
+	let insertValue = "주간 박스오피스";
+	
+	chatbotKeyword.value = insertValue;
+	
+	sendChatbotButton()
+}
+
+function insertMovieDetail() {
+	let insertValue = "영화 상세정보";
+	
+	chatbotKeyword.value = insertValue;
+	
+	sendChatbotButton()
 }
 
 //문서 전체 읽은 후 스크립트 실행을 위한 이벤트 리스너

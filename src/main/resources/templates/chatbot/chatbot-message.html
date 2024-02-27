@@ -17,11 +17,12 @@
 		<div id="chatbot-message">
 			
 			<div id="chatbot-message-box" class="message-box">
-				<span th:text="${message.responseDTO.content}"></span>
-			</div>
-			
-			<div id="movie-message-box">
-			
+				<p th:utext="${message.responseDTO.content}"></p>
+				<p>원하시는 영화 정보를 선택해주세요.</p>
+				<div class="flex center-1 center-2">
+					<button id="daily-box-office-button" onclick="insertDailyBoxOffice()">일간 박스오피스</button>
+					<button id="weekly-box-office-button" onclick="insertWeeklyBoxOffice()">주간 박스오피스</button>
+				</div>
 			</div>
 			
 			<!--챗봇 메시지 작성 시간-->
