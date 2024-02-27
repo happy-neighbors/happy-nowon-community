@@ -1,5 +1,6 @@
 package com.project.community.controller;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,7 @@ public class AnabadaController {
 		anabadaService.anabadaList(model);
 		Long count = noteService.countState();
 		model.addAttribute("count", count);
+		model.addAttribute("localTime", LocalDateTime.now());
 		return "anabada/anabada";
 	}
 	@GetMapping("/add-anabada")
@@ -54,13 +56,13 @@ public class AnabadaController {
 		return fileUtil3.s3TempUpload(driveFile);
 	}
 	@PostMapping("/add-anabada")
-	public String addTown(AnabadaDTO dto, Authentication user) {
+	public String addAnabada(AnabadaDTO dto, Authentication user) {
 		anabadaService.anabadaSave(dto, user);
 		System.out.println("저장완료");
 		return "redirect:/anabada";
 	}
 	@GetMapping("/detail-anabada/{pk}")
-	public String detailTown(@PathVariable(name = "pk") long pk, Model model) {
+	public String detailAnabada(@PathVariable(name = "pk") long pk, Model model) {
 		anabadaService.detailAnabada(pk, model);
 		anabadaService.getCount(pk);
 		Long count = noteService.countState();
@@ -68,12 +70,12 @@ public class AnabadaController {
 		return "anabada/detail-anabada";
 	}
 	@DeleteMapping("/detail-anabada/{pk}")
-	public String deleteTown(@PathVariable(name = "pk") long pk) {
+	public String deleteAnabada(@PathVariable(name = "pk") long pk) {
 		anabadaService.deleteAnabada(pk);
 		return "redirect:/anabada";
 	}
 	@PutMapping("/detail-anabada/{pk}")
-	public String updateTown(@PathVariable(name = "pk") long pk, @RequestParam(value = "area") String area, @RequestParam(value = "content") String content, @RequestParam(value = "title") String title, @RequestParam(value = "state") String state) {
+	public String updateAnabada(@PathVariable(name = "pk") long pk, @RequestParam(value = "area") String area, @RequestParam(value = "content") String content, @RequestParam(value = "title") String title, @RequestParam(value = "state") String state) {
 		anabadaService.updateAnabada(pk, area, content, title, state);
 		return "redirect:/detail-anabada/{pk}";
 	}

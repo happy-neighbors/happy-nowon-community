@@ -1,5 +1,6 @@
 package com.project.community.controller;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +45,7 @@ public class TownController {
 		townService.townList(model);
 		Long count = noteService.countState();
 		model.addAttribute("count", count);
+		model.addAttribute("localTime", LocalDateTime.now());
 		return "town/town";
 	}
 	@GetMapping("/add-town")
@@ -77,7 +79,9 @@ public class TownController {
 		return "redirect:/town";
 	}
 	@PutMapping("/detail-town/{pk}")
-	public String updateTown(@PathVariable(name = "pk") long pk, @RequestParam(value = "area") String area, @RequestParam(value = "content") String content, @RequestParam(value = "title") String title) {
+	public String updateTown(@PathVariable(name = "pk") long pk, @RequestParam(value = "area") String area, 
+								@RequestParam(value = "content") String content, 
+								@RequestParam(value = "title") String title) {
 		townService.updateTown(pk, area, content, title);
 		return "redirect:/detail-town/{pk}";
 	}

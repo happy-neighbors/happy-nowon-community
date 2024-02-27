@@ -41,10 +41,10 @@
 			<div class="town-date flex between">
 				<div class="flex">
 					<p class="town-date-title">게시글등록 : </p>
-					<p class="town-date-info" th:text="${#temporals.format(dto.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></p>
+					<p class="town-date-info" th:text="${#temporals.format(dto.createdAt, 'yyyy-MM-dd HH:mm')}"></p>
 					<p class="town-date-title">최종수정 : </p>
-					<p class="town-date-info" th:if="${dto.updatedAt == null}" th:text="${#temporals.format(dto.createdAt, 'yyyy-MM-dd HH:mm:ss')}"></p>
-					<p class="town-date-info" th:if="${dto.updatedAt != null}" th:text="${#temporals.format(dto.updatedAt, 'yyyy-MM-dd HH:mm:ss')}"></p>
+					<p class="town-date-info" th:if="${dto.updatedAt == null}" th:text="${#temporals.format(dto.createdAt, 'yyyy-MM-dd HH:mm')}"></p>
+					<p class="town-date-info" th:if="${dto.updatedAt != null}" th:text="${#temporals.format(dto.updatedAt, 'yyyy-MM-dd HH:mm')}"></p>
 				</div>
 				<div class="flex read-count">
 					<p>조회수</p>
