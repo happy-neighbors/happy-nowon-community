@@ -93,10 +93,10 @@ function showUserMessage(keyword) {
 	let time = formatTime();
 	
 	return `
-		<div id="user-message-wrap" class="message-wrap flex end">
-			<div id="message-direction-user" class="message-direction"></div>
-			<div id="user-message">
-				<div id="user-message-box" class="message-box">
+		<div class="user-message-wrap message-wrap flex end">
+			<div class="message-direction-user message-direction"></div>
+			<div class="user-message">
+				<div class="user-message-box message-box">
 					<span>${keyword}</span>
 				</div>
 				<div class="chatbot-time">
@@ -108,7 +108,7 @@ function showUserMessage(keyword) {
 }
 
 //입력값 전송 버튼
-function sendChatbotButton() {
+function sendChatbotButton(movieCode) {
 	let keyword = chatbotKeyword.value.trim();
 	
 	if (keyword.length < 2) {
@@ -124,7 +124,6 @@ function sendChatbotButton() {
 	switch (keyword) {
 		case "일간 박스오피스":
 			dailyBoxOffice();
-			
 			showUserMessage(keyword);
 			
 			chatbotKeyword.value = "";
@@ -132,17 +131,18 @@ function sendChatbotButton() {
 			return;
 		case "주간 박스오피스":
 			weeklyBoxOffice();
-			
 			showUserMessage(keyword);
 			
 			chatbotKeyword.value = "";
 			
 			return;
 		case "영화 상세정보":
-			let movieCode = document.querySelectorAll(".movie-code").value;
-			console.log("movieCode: " + movieCode);
+			movieDetail(movieCode);
+			showUserMessage(keyword);
 			
-			//movieDetail();
+			chatbotKeyword.value = "";
+			
+			return;
 		default:
 			break;
 	}
@@ -244,65 +244,79 @@ function weeklyBoxOffice() {
 }
 
 //영화 상세정보
-function movieDetail() {
+function movieDetail(movieCode) {
 	let url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieInfo.json?";
-	
-	let movieCd = document.getElementById("movie-code").value;
-	
+
 	$.ajax({
 		method: "GET",
-		url: url + "key=" + movieKey + "&movieCd=" + movieCd,
+		url: url + "key=" + movieKey + "&movieCd=" + movieCode,
 	}).done(function(message) {
 		let shortUrl = message.movieInfoResult.movieInfo;
-		
-		let movieDetailData = "";
-		
-		/*result += "<p>영화 제목: " + shortUrl.movieNm + "</p>";
-		
-		result += "<p>장르: "
-		for (let i = 0; i < gnrs.length; i++) {
-			result += "<span>" + gnrs[i]['genreNm'] + ", </span>";
-		}
-		result = result.substring(0, result.length-9);
-		result += "</span></p>"
-		
-		result += "<p>감독: "
-		for (let j = 0; j < drts.length; j++) {
-			result += "<span> " + drts[j]['peopleNm'] + ", </span>";
-		}
-		result = result.substring(0, result.length-9);
-		result += "</span></p>"
-		
-		result += "<p>배우: "
-		for (let k = 0; k < acts.length; k++) {
-			result += "<span>" + acts[k]['peopleNm'] + ", </span>";
-		}
-		result = result.substring(0, result.length-9);
-		result += "</span></p>"
-		
-		result += "<p>상영 시간: " + shortUrl.showTm + "분</p>";
-		result += "<p>개봉일: " + shortUrl.openDt + "</p>";
-		
-		movieDetailResult.innerHTML += result;*/
-		
-		showChatbotMessage(movieDetailData);
+		let gnrs = shortUrl.genres;
+		let drts = shortUrl.directors;
+		let acts = shortUrl.actors;
+
+		let movieName = shortUrl.movieNm;
+		postMovieName(movieName)
+			.then(function(thumbnailUrl) {
+				let movieDetailData = "";
+
+				movieDetailData += `
+          <div class="movie-message-wrap message-wrap flex">
+          	<div class="movie-message">
+          		<div class="movie-message-box">
+          			<div class="movie-thumbnail">
+              		<img src="${thumbnailUrl}">
+          			</div>
+          			<p>영화 제목: ${shortUrl.movieNm}</p>
+          			<p>장르: `;
+									for (let i = 0; i < gnrs.length; i++) {
+										movieDetailData += `<span>${gnrs[i]['genreNm']}, </span>`;
+									}
+									movieDetailData = movieDetailData.substring(0, movieDetailData.length - 9);
+									movieDetailData += `</p>`;
+					
+									movieDetailData += `<p>감독: `;
+									for (let j = 0; j < drts.length; j++) {
+										movieDetailData += `<span>${drts[j]['peopleNm']}, </span>`;
+									}
+									movieDetailData = movieDetailData.substring(0, movieDetailData.length - 9);
+									movieDetailData += `</p>`;
+					
+									movieDetailData += `<p>배우: `;
+									for (let k = 0; k < acts.length; k++) {
+										movieDetailData += `<span>${acts[k]['peopleNm']}, </span>`;
+									}
+									movieDetailData = movieDetailData.substring(0, movieDetailData.length - 9);
+									movieDetailData += `</p>`;
+					
+									movieDetailData += `<p>상영 시간: ${shortUrl.showTm}분</p>`;
+									movieDetailData += `<p>개봉일: ${shortUrl.openDt}</p>`;
+					
+									movieDetailData += `
+							</div>
+						</div>
+					</div>
+        `;
+
+				showChatbotMessage(movieDetailData);
+			})
+			.catch(function(error) {
+				console.error("Error fetching thumbnail URL:", error);
+			});
 	});
 }
 
 function createBoxOfiiceMessageBox(shortUrl) {
 	return `
-		<div id="movie-message-wrap" class="message-wrap flex">
-			<div id="movie-message">
-				<div id="movie-message-box" class="movie-message-box">
+		<div class="movie-message-wrap message-wrap flex">
+			<div class="movie-message">
+				<div class="movie-message-box">
 					<p>${shortUrl.rank}위</p>
-					<p>영화 코드:${shortUrl.movieCd}</p>
 					<button onclick="insertMovieDetail()">제목: ${shortUrl.movieNm}</button>
 					<input type="hidden" class="movie-code" value="${shortUrl.movieCd}"></input>
 					<p>개봉일: ${shortUrl.openDt}</p>
 					<p>관객 수: ${shortUrl.audiAcc}</p>
-				</div>
-				<div class="chatbot-time">
-					<span></span>
 				</div>
 			</div>
 		</div>
@@ -314,7 +328,7 @@ function insertDailyBoxOffice() {
 	
 	chatbotKeyword.value = insertValue;
 	
-	sendChatbotButton()
+	sendChatbotButton();
 }
 
 function insertWeeklyBoxOffice() {
@@ -322,15 +336,38 @@ function insertWeeklyBoxOffice() {
 	
 	chatbotKeyword.value = insertValue;
 	
-	sendChatbotButton()
+	sendChatbotButton();
 }
 
 function insertMovieDetail() {
+	let button = event.target;
+	let inputMovieCode = button.parentNode.querySelector('.movie-code');
+	let movieCode = inputMovieCode.value;
+	
 	let insertValue = "영화 상세정보";
 	
 	chatbotKeyword.value = insertValue;
 	
-	sendChatbotButton()
+	sendChatbotButton(movieCode);
+}
+
+function postMovieName(movieName) {
+	return new Promise(function(resolve, reject) {
+		$.ajax({
+			method: "POST",
+			url: "/movie/thumbnail",
+			contentType: "application/json",
+			data: JSON.stringify({
+				movieName: movieName
+			}),
+			success: function(thumbnailUrl) {
+				resolve(thumbnailUrl);
+			},
+			error: function(xhr, status, error) {
+				reject(error);
+			}
+		});
+	});
 }
 
 //문서 전체 읽은 후 스크립트 실행을 위한 이벤트 리스너

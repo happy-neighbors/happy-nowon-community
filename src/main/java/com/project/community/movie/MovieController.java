@@ -1,8 +1,11 @@
 package com.project.community.movie;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import lombok.RequiredArgsConstructor;
 
@@ -12,10 +15,10 @@ public class MovieController {
 	
 	private final MovieService movieService;
 	
-	@GetMapping("/movie")
-	public String movieDetail(Model model) {
-		movieService.getThumbnailUrl(model);
-		
-		return "chatbot/movie-detail";
+	@PostMapping("/movie/thumbnail")
+	@ResponseBody
+	public String movieThumbnail(@RequestBody Map<String, Object> movieName) {
+		String thumbnailUrl = (String) movieName.get("movieName");
+		return movieService.getThumbnailUrl(thumbnailUrl);
 	}
 }
