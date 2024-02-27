@@ -4,24 +4,24 @@
 	<div id="chatbot-date" class="flex center-1" th:if="${message.today}" th:text="${message.today}">오늘 날짜</div>
 	
 	<!--챗봇 메시지-->
-	<div id="chatbot-message-wrap" class="message-wrap flex">
+	<div class="chatbot-message-wrap message-wrap flex">
 		
 		
-		<div id="chatbot-profile-wrap" class="flex center-1 center-2">
-			<img src="/img/chatbot/chatbot-bot-profile.png" id="chatbot-bot-profile">
+		<div class="chatbot-profile-wrap flex center-1 center-2">
+			<img src="/img/chatbot/chatbot-bot-profile.png" class="chatbot-bot-profile">
 		</div>
 		
 		<!--챗봇 메시지 방향 표시-->
-		<div id="message-direction-chatbot" class="message-direction"></div>
+		<div class="message-direction-chatbot message-direction"></div>
 		
-		<div id="chatbot-message">
+		<div class="chatbot-message">
 			
-			<div id="chatbot-message-box" class="message-box">
+			<div class="chatbot-message-box message-box">
 				<p th:utext="${message.responseDTO.content}"></p>
 				<p>원하시는 영화 정보를 선택해주세요.</p>
 				<div class="flex center-1 center-2">
-					<button id="daily-box-office-button" onclick="insertDailyBoxOffice()">일간 박스오피스</button>
-					<button id="weekly-box-office-button" onclick="insertWeeklyBoxOffice()">주간 박스오피스</button>
+					<button class="daily-box-office-button" onclick="insertDailyBoxOffice()">일간 박스오피스</button>
+					<button class="weekly-box-office-button" onclick="insertWeeklyBoxOffice()">주간 박스오피스</button>
 				</div>
 			</div>
 			
