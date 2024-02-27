@@ -22,15 +22,15 @@
 				<p class="title">모임명</p>
 				<p class="view-count">장소</p>
 				<p class="view-count">조회수</p>
-				<p class="date">수정일</p>
+				<p class="date">작성일</p>
 			</div>
 			<a th:href="@{/detail-town/{pk}(pk=${town.no})}" class="flex between col-center board-wrap board-wrap-content" th:each="town :${result.dtoList}">
 				<p class="no" th:text="${town.no}">번호</p>
 				<p class="title" th:text="${town.title}">모임명</p>
 				<p class="view-count" th:text="${town.area}">장소</p>
 				<p class="view-count" th:text="${town.readCount}">조회수</p>
-				<p class="date" th:if="${town.updatedAt == null}" th:text="${#temporals.format(town.createdAt, 'yyyy-MM-dd HH:mm:ss')}">수정일</p>
-				<p class="date" th:if="${town.updatedAt != null}" th:text="${#temporals.format(town.updatedAt, 'yyyy-MM-dd HH:mm:ss')}">수정일</p>
+				<p class="date" th:text="${#temporals.format(town.createdAt, 'yyyy-MM-dd') == #temporals.format(localTime, 'yyyy-MM-dd')} ? 
+								${#temporals.format(town.createdAt, 'HH:mm:ss')} : ${#temporals.format(town.createdAt, 'yyyy-MM-dd')}">수정일</p>
 			</a>
 		</section>
 		<ul class="page-list flex center">
@@ -42,7 +42,8 @@
 			</li>
 			<th:block th:each="page:${result.pageList}">
 				<li>
-					<div class="pageNum" th:class="${#strings.equals(param.page, page) ? 'highlighted' : ''} + ${param.page == null && page == 1? 'highlighted' : ''}">
+					<div class="pageNum" th:class="${#strings.equals(param.page, page) ? 'highlighted' : ''} + 
+											${param.page == null && page == 1? 'highlighted' : ''}">
 			        	<a th:href="@{/town(page=${page})}">
 							<p th:text="${page}"></p>
 						</a> 

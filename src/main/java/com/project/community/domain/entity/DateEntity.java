@@ -6,6 +6,7 @@ import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
+
 import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -27,11 +28,36 @@ public class DateEntity {
 		this.createdAt = LocalDateTime.now();
 	}
 	
+	@PreUpdate
 	public void preUpdate() {
-	    if (this.readCount == 0) {
-	        this.updatedAt = LocalDateTime.now();
+	    // getCount 메서드에서의 업데이트를 방지하는 조건 추가
+	    if (!isGetCountUpdate()) {
+	        return;
 	    }
+
+	    this.updatedAt = LocalDateTime.now();
 	}
+
+	private boolean isGetCountUpdate() {
+		StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
+	    for (StackTraceElement element : stackTrace) {
+	        if (element.getClassName().equals("com.project.community.controller.TownController")
+	            && element.getMethodName().equals("detailTown")) {
+	            return false;
+	        }
+	        if (element.getClassName().equals("com.project.community.controller.AnabadaController")
+		        && element.getMethodName().equals("detailAnabada")) {
+		        return false;
+		    }
+	        if (element.getClassName().equals("com.project.community.controller.NoticeController")
+		        && element.getMethodName().equals("noticeDetail")) {
+		        return false;
+		    }
+	    }
+
+	    return true;
+	}
+
 
 }
 
