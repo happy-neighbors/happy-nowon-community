@@ -1,36 +1,76 @@
 <!DOCTYPE html>
 <html xmlns:th="https://www.thymeleaf.org">
+	<article id="chat-bot">
+		<h1>챗봇</h1>
+		<div class="wrap">
+			<section id="conversation" contenteditable="false">
+				<h1>대화화면</h1>
+				<div class="wrap ">
+					<ul class="bot-menu">
+						<li>
+							<button class="btn-bot" id="btn-bot"></button>
+						</li>
+					</ul>
+					<div class="container" id="bot-container" >
+						<div class="c-header flex between col-center">
+							<p class="help flex col-center">
+								<span>HELP</span></p>
+							<p><b>영훈's Weather News</b></p>
+							<p class="close flex end col-center">
+								<span onclick="btnCloseClicked()"></span>
+							</p>
+						</div>					
+						<div class="c-content" id="chat-content">
+							<!--대화내용 들어가는 영역-->
+							
+						</div>
+						<div class="c-question flex col-center">
+							<span class="home-icon"></span>
+							<span class="q-wrap">
+								<input contenteditable="false" type="search" class="question" id="question" onkeyup="checkEnterKey(event)" placeholder="질문을 입력하세요">
+								<button class="btn-send" onclick="btnMsgSendClicked()"></button>
+							</span>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</article>
+	
 	<aside id="chatbot">
 		
-		<!--챗봇 활성화 버튼-->
-		<section id="chatbot-button-wrap" class="flex center-1 center-2">
-			<button id="chatbot-button" class="chatbot-button" onclick="toggleChatbotButton()">
-				<img src="/img/chatbot/chatbot-bot.png" id="chatbot-button-img" alt="chatbot-button">
-			</button>
-		</section>
-		
-		<!--챗봇 콘텐츠-->
-		<section id="chatbot-body-wrap" class="none">
-		
-			<!--챗봇 헤드-->
-			<div id="chatbot-head-wrap" class="flex center-1 center-2">
-				<img src="/img/chatbot/chatbot-title.png" id="chatbot-title" alt="chatbot-title">
-			</div>
+		<div>
+			<!--챗봇 활성화 버튼-->
+			<section id="chatbot-button-wrap" class="flex center-1 center-2">
+				<button id="chatbot-button" class="chatbot-button" onclick="toggleChatbotButton()">
+					<img src="/img/chatbot/chatbot-bot.png" id="chatbot-button-img" alt="chatbot-button">
+				</button>
+			</section>
 			
-			<!--대화 내용-->
-			<div id="chatbot-content-wrap">
-				<div id="chatbot-content">
-					
-				</div>
-			</div>
+			<!--챗봇 콘텐츠-->
+			<section id="chatbot-body-wrap" class="none">
 			
-			<!--검색-->
-			<div id="chatbot-search-wrap" class="flex center-1 center-2">
-				<input type="text" id="chatbot-keyword" placeholder="메시지를 입력해주세요." onkeyup="checkEnterKey(event)">
-				<div class="chatbot-send-wrap flex center-1 center-2">
-					<img src="/img/chatbot/chatbot-send.png" id="chatbot-send">
+				<!--챗봇 헤드-->
+				<div id="chatbot-head-wrap" class="flex center-1 center-2">
+					<img src="/img/chatbot/chatbot-title.png" id="chatbot-title" alt="chatbot-title">
 				</div>
-			</div>
-		</section>
+				
+				<!--대화 내용-->
+				<div id="chatbot-content-wrap">
+					<div id="chatbot-content">
+						
+					</div>
+				</div>
+				
+				<!--검색-->
+				<div id="chatbot-search-wrap" class="flex center-1 center-2">
+					<input type="text" id="chatbot-keyword" placeholder="메시지를 입력해주세요." onkeyup="checkEnterKey(event)">
+					<div class="chatbot-send-wrap flex center-1 center-2">
+						<img src="/img/chatbot/chatbot-send.png" id="chatbot-send">
+					</div>
+				</div>
+			</section>
+		</div>
 	</aside>
+	
 </html>

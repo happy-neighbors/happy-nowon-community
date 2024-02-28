@@ -12,11 +12,11 @@ public class WebSocketCofig implements WebSocketMessageBrokerConfigurer {
 
 	@Override
 	public void registerStompEndpoints(StompEndpointRegistry registry) {
-		registry.addEndpoint("/chatbot").withSockJS();
+		registry.addEndpoint("/chatbot","/green-bot").withSockJS();
 	}
 
 	@Override
 	public void configureMessageBroker(MessageBrokerRegistry registry) {
-		registry.setApplicationDestinationPrefixes("/message");
+		registry.setApplicationDestinationPrefixes("/message","/weather");
 	}
 }

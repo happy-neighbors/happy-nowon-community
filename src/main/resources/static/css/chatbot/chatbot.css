@@ -10,7 +10,7 @@
 }
 
 #chatbot-button-wrap {
-	position: fixed;
+	/* position: fixed; */
 	right: 50px;
 	bottom: 50px;
 	border-radius: 1.3rem;
